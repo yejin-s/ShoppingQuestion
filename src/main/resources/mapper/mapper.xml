@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yejin.spring.dao.ShoppingQuestionBoardDao">
+
+	<select id="shoppingQuestionBoardList" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+		SELECT QUESTION_NUMBER as questionNumber
+		     , QUESTION_USER as questionUser
+		     , QUESTION_TITLE as questionTitle
+		     , QUESTION_CONTENT as questionContent
+		     , QEUSTION_REGDATE as questionRegDate
+		     , QESTION_MODIFY_REGDATE as qeustionModityRegDate
+		     , QESTION_DELETE_CHECK as questionDeleteCheck
+		FROM SHOPPING_QUESTION_BOARD
+	</select>
+	
+	<insert id="boardWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+		INSERT INTO SHOPPING_QUESTION_BOARD(
+			QUESTION_NUMBER
+			, QUESTION_USER
+			, QUESTION_TITLE
+			, QUESTION_CONTENT
+			, QEUSTION_REGDATE)
+		VALUES(QUESTION_NUMBER_SEQ.NEXTVAL
+			, #{questionUser}
+			, #{questionTitle}
+			, #{questionContent}
+			, SYSDATE)
+	</insert>
+	
+	<select id="boardDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+		SELECT QUESTION_NUMBER as questionNumber
+			    , QUESTION_USER as questionUser
+			    , QUESTION_TITLE as questionTitle
+			    , QUESTION_CONTENT as questionContent
+			    , QEUSTION_REGDATE as questionRegDate
+			    , QESTION_MODIFY_REGDATE as qeustionModityRegDate
+			    , QESTION_DELETE_CHECK as qeustionDeleteCheck
+		FROM SHOPPING_QUESTION_BOARD
+		WHERE QUESTION_NUMBER = #{questionNumber}
+	</select>
+	
+	<update id="boardUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+		UPDATE SHOPPING_QUESTION_BOARD
+		SET QUESTION_TITLE = #{questionTitle}
+			, QUESTION_CONTENT= #{questionContent}
+		WHERE QUESTION_NUMBER = #{questionNumber}
+	</update>
+	
+	<update id="boardDelete" parameterType="int">
+		UPDATE SHOPPING_QUESTION_BOARD
+		SET QESTION_DELETE_CHECK = 'Y'
+		WHERE QUESTION_NUMBER = #{questionNumber}
+	</update>
+
+</mapper>
