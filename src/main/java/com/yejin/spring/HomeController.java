@@ -76,8 +76,10 @@ public class HomeController {
 	@RequestMapping(value = "/shoppingQuestion/boardUpdate")
 	public String boardUpdate(HttpServletRequest req, Model model) {
 		
+		// 수정한 글로 없데이트 해준 후
 		shoppingQuestionBoardService.boardUpdate(req, model);
 		
+		// 글 상세정보를 가져오는 서비스를 호출해준다
 		ShoppingQuestionBoardVo shoppingQuestionBoardDetail = shoppingQuestionBoardService.boardDetail(req, model);
 		
 		model.addAttribute("shoppingQuestionBoardDetail", shoppingQuestionBoardDetail);
