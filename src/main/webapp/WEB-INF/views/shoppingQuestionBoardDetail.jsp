@@ -9,35 +9,39 @@
 <title>Shopping QUuestion Board Detail</title>
 </head>
 <body>
-	<table border="1px">
-		<tr>
-			<td>번호</td>
-			<td>제목</td>
-			<td>내용</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>수정일</td>
-			<td>기타</td>
-		</tr>
-		<tr>
-			<td>${shoppingQuestionBoardDetail.questionNumber }</td>
-			<td>${shoppingQuestionBoardDetail.questionTitle }</td>
-			<td>${shoppingQuestionBoardDetail.questionContent }</td>
-			<td>${shoppingQuestionBoardDetail.questionUser }</td>
-			<td><fmt:formatDate value="${shoppingQuestionBoardDetail.questionRegDate}" pattern="yy/MM/dd"/></td>
-			<c:if test="${shoppingQuestionBoardDetail.qeustionModityRegDate ne null}">
-				<td><fmt:formatDate value="${shoppingQuestionBoardDetail.qeustionModityRegDate}" pattern="yy/MM/dd"/></td>
-			</c:if>
-			<c:if test="${shoppingQuestionBoardDetail.qeustionModityRegDate eq null}">
+	<form action = "/spring/shoppingQuestion/boardUpdatePage">
+		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionBoardDetail.questionNumber }">
+		<table border="1px">
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+				<td>내용</td>
+				<td>작성자</td>
+				<td>등록일</td>
+				<td>수정일</td>
+				<td>기타</td>
+			</tr>
+			<tr>
+				<td>${shoppingQuestionBoardDetail.questionNumber }</td>
+				<td>${shoppingQuestionBoardDetail.questionTitle }</td>
+				<td>${shoppingQuestionBoardDetail.questionContent }</td>
+				<td>${shoppingQuestionBoardDetail.questionUser }</td>
 				<td><fmt:formatDate value="${shoppingQuestionBoardDetail.questionRegDate}" pattern="yy/MM/dd"/></td>
-			</c:if>
-			<td><input type="button" value="수정" onclick="javascript:goShoppingQuestionUpdatePage('${shoppingQuestionBoardDetail.questionNumber }')"></td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td><input type="button" value="뒤로" onclick="javascript:goShoppingQuestionList()"></td>
-		</tr>
-	</table>
+				<c:if test="${shoppingQuestionBoardDetail.qeustionModityRegDate ne null}">
+					<td><fmt:formatDate value="${shoppingQuestionBoardDetail.qeustionModityRegDate}" pattern="yy/MM/dd"/></td>
+				</c:if>
+				<c:if test="${shoppingQuestionBoardDetail.qeustionModityRegDate eq null}">
+					<td><fmt:formatDate value="${shoppingQuestionBoardDetail.questionRegDate}" pattern="yy/MM/dd"/></td>
+				</c:if>
+				<td><input type="submit" value="수정"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td><input type="button" value="뒤로" onclick="javascript:goShoppingQuestionList()"></td>
+			</tr>
+		</table>
+	</form>
+	
 </body>
 </html>

@@ -27,18 +27,18 @@ public class ShoppingQuestionBoardDaoImpl implements ShoppingQuestionBoardDao{
 	// 게시글 등록하기
 	// 입력 파라미터 : 작성한 글 정보 -> 작성자, 제목, 내용을 VO에 담아서 mapper로 이동
 	@Override
-	public void boardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
 		
-		sqlSession.insert("com.yejin.spring.dao.ShoppingQuestionBoardDao.boardWriteEnrollment", shoppingQuestionBoardVo);
+		sqlSession.insert("com.yejin.spring.dao.ShoppingQuestionBoardDao.shoppingQeustionBoardWriteEnrollment", shoppingQuestionBoardVo);
 	}
 
 	// 게시글 상세보기
 	// 입력 파라미터 : 게시글 번호
 	// return : 게시글 정보 -> 글 번호, 작성자, 제목, 내용, 등록일, 수정일, 삭제여부를 VO에 담아서 리턴
 	@Override
-	public ShoppingQuestionBoardVo boardDetail(int questionNumber) {
+	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(int questionNumber) {
 		
-		ShoppingQuestionBoardVo shoppingQuestionBoardDatail = sqlSession.selectOne("com.yejin.spring.dao.ShoppingQuestionBoardDao.boardDetail", questionNumber);
+		ShoppingQuestionBoardVo shoppingQuestionBoardDatail = sqlSession.selectOne("com.yejin.spring.dao.ShoppingQuestionBoardDao.shoppingQuestionBoardDetail", questionNumber);
 		
 		return shoppingQuestionBoardDatail;
 	}
@@ -46,8 +46,8 @@ public class ShoppingQuestionBoardDaoImpl implements ShoppingQuestionBoardDao{
 	// 게시글 수정하기
 	// 입력 하파미터 : 수정한 글 정보 -> 글 번호, 제목, 내용을 VO에 담아서 mapper로 이동
 	@Override
-	public void boardUpdate(ShoppingQuestionBoardVo updateShoppingQuestionBoardVo) {
-		sqlSession.update("com.yejin.spring.dao.ShoppingQuestionBoardDao.boardUpdate", updateShoppingQuestionBoardVo);
+	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
+		sqlSession.update("com.yejin.spring.dao.ShoppingQuestionBoardDao.shoppingQuestionBoardUpdate", shoppingQuestionBoardVo);
 		
 	}
 
@@ -55,8 +55,8 @@ public class ShoppingQuestionBoardDaoImpl implements ShoppingQuestionBoardDao{
 	// 입력 파라미터 : 게시글 번호
 	// 게시글 번호로 DB에서 해당하는 글을 찾아서 삭제여부를 N에서 Y로 업데이트 해준다
 	@Override
-	public void boardDelete(int questionNumber) {
-		sqlSession.update("com.yejin.spring.dao.ShoppingQuestionBoardDao.boardDelete", questionNumber);
+	public void shoppingQuestionBoardDelete(int questionNumber) {
+		sqlSession.update("com.yejin.spring.dao.ShoppingQuestionBoardDao.shoppingQuestionBoardDelete", questionNumber);
 		
 	}
 

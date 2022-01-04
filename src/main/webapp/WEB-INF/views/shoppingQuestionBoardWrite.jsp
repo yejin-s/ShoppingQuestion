@@ -7,7 +7,7 @@
 <title>Shopping Question Board Write</title>
 </head>
 <body>
-	<form action="/spring/shoppingQuestion/boardWriteEnrollment">
+	<form action="/spring/shoppingQuestion/boardWriteEnrollment" method="post">
 		<table border="1px">
 		<tr>
 			<th>작성자</th>

@@ -12,9 +12,10 @@
 		     , QESTION_MODIFY_REGDATE as qeustionModityRegDate
 		     , QESTION_DELETE_CHECK as questionDeleteCheck
 		FROM SHOPPING_QUESTION_BOARD
+		WHERE QESTION_DELETE_CHECK = 'N'
 	</select>
 	
-	<insert id="boardWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+	<insert id="shoppingQeustionBoardWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
 		INSERT INTO SHOPPING_QUESTION_BOARD(
 			QUESTION_NUMBER
 			, QUESTION_USER
@@ -28,7 +29,7 @@
 			, SYSDATE)
 	</insert>
 	
-	<select id="boardDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+	<select id="shoppingQuestionBoardDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
 		SELECT QUESTION_NUMBER as questionNumber
 			    , QUESTION_USER as questionUser
 			    , QUESTION_TITLE as questionTitle
@@ -40,14 +41,14 @@
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</select>
 	
-	<update id="boardUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+	<update id="shoppingQuestionBoardUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
 		UPDATE SHOPPING_QUESTION_BOARD
 		SET QUESTION_TITLE = #{questionTitle}
 			, QUESTION_CONTENT= #{questionContent}
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 	
-	<update id="boardDelete" parameterType="int">
+	<update id="shoppingQuestionBoardDelete" parameterType="int">
 		UPDATE SHOPPING_QUESTION_BOARD
 		SET QESTION_DELETE_CHECK = 'Y'
 		WHERE QUESTION_NUMBER = #{questionNumber}

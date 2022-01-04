@@ -21,24 +21,21 @@
 		
 		<c:if test="${shoppingQuestionBoardList ne null && shoppingQuestionBoardList.size() > 0 }">
 			<c:forEach items="${shoppingQuestionBoardList}" var="shoppingQuestionBoardList" > 
-				<c:if test="${shoppingQuestionBoardList.questionDeleteCheck  == 'N'}">
-					<tr>
-						<td>${shoppingQuestionBoardList.questionNumber }</td>
-						<td>${shoppingQuestionBoardList.questionUser }</td>
-						<td><a href="javascript:goShoppingQuestionDetail('${shoppingQuestionBoardList.questionNumber }')">${shoppingQuestionBoardList.questionTitle }</a></td>
+				<tr>
+					<td>${shoppingQuestionBoardList.questionNumber }</td>
+					<td>${shoppingQuestionBoardList.questionUser }</td>
+					<td><a href="javascript:goShoppingQuestionDetail('${shoppingQuestionBoardList.questionNumber }')">${shoppingQuestionBoardList.questionTitle }</a></td>
+					<td><fmt:formatDate value="${shoppingQuestionBoardList.questionRegDate}" pattern="yy/MM/dd"/></td>
+					<c:if test="${shoppingQuestionBoardList.qeustionModityRegDate ne null}">
+						<td><fmt:formatDate value="${shoppingQuestionBoardList.qeustionModityRegDate}" pattern="yy/MM/dd"/></td>
+					</c:if>
+					<c:if test="${shoppingQuestionBoardList.qeustionModityRegDate eq null}">
 						<td><fmt:formatDate value="${shoppingQuestionBoardList.questionRegDate}" pattern="yy/MM/dd"/></td>
-						
-						<c:if test="${shoppingQuestionBoardList.qeustionModityRegDate ne null}">
-							<td><fmt:formatDate value="${shoppingQuestionBoardList.qeustionModityRegDate}" pattern="yy/MM/dd"/></td>
-						</c:if>
-						<c:if test="${shoppingQuestionBoardList.qeustionModityRegDate eq null}">
-							<td><fmt:formatDate value="${shoppingQuestionBoardList.questionRegDate}" pattern="yy/MM/dd"/></td>
-						</c:if>
-						<td>
-							<input type="button" value="삭제" onclick="javascript:goShoppingQuestionDelete('${shoppingQuestionBoardList.questionNumber }')">	
-						</td>
-					</tr>
-				</c:if>
+					</c:if>
+					<td>
+						<input type="button" value="삭제" onclick="javascript:goShoppingQuestionDelete('${shoppingQuestionBoardList.questionNumber }')">	
+					</td>
+				</tr>
 			</c:forEach>
 		</c:if>
 		<c:if test="${shoppingQuestionBoardList eq null || shoppingQuestionBoardList.size() <= 0}">
@@ -52,5 +49,8 @@
 			<td><input type="button" value="글쓰기" onclick="javascript:goShoppingQuestionWrite()"></td>
 		</tr>
 	</table>
+	<form name="shoppingQuestionBoardForm" method="post">
+		<input type="hidden" id="questionNumber" name="questionNumber"/>
+	</form>
 </body>
 </html>

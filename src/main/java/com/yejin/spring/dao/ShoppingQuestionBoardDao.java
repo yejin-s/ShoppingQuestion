@@ -10,14 +10,14 @@ public interface ShoppingQuestionBoardDao {
 	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList();
 	
 	// 게시글 등록
-	public void boardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 	
 	// 게시글 상세정보
-	public ShoppingQuestionBoardVo boardDetail(int questionNumber);
+	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(int questionNumber);
 
 	// 게시글 수정
-	public void boardUpdate(ShoppingQuestionBoardVo updateShoppingQuestionBoardVo);
+	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 	
 	// 게시글 삭제
-	public void boardDelete(int questionNumber);
+	public void shoppingQuestionBoardDelete(int questionNumber);
 }

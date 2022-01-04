@@ -5,12 +5,12 @@
 <html>
 <script type="text/javascript" src="/spring/resources/js/home.js"></script>
 <head>
-<meta charset="EUC-KR">
 <title>Shopping QUuestion Board Update Page</title>
 </head>
 <body>
 
-	<form action="javascript:goShoppingQuestionUpdate('${shoppingQuestionBoardDetail.questionNumber }')" name="updateForm">
+	<form action="/spring/shoppingQuestion/boardUpdate" method="post">
+		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionBoardDetail.questionNumber }">
 		<table border="1px">
 			<tr>
 				<td>번호</td>

@@ -14,14 +14,14 @@ public interface ShoppingQuestionBoardService {
 	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList(HttpServletRequest req, Model model);
 	
 	// 글쓰기 등록
-	public void boardWriteEnrollment(HttpServletRequest req, Model model);
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
 	
 	// 글 상세정보
-	public ShoppingQuestionBoardVo boardDetail(HttpServletRequest req, Model model);
+	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
 	
 	// 글 수정
-	public void boardUpdate(HttpServletRequest req, Model model);
+	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
 	
 	// 글 삭제
-	public void boardDelete(HttpServletRequest req, Model model);
+	public void shoppingQuestionBoardDelete(HttpServletRequest req, Model model);
 }

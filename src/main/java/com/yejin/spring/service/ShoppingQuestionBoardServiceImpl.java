@@ -37,14 +37,9 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 작성한 게시글 내용 등록하기
 	// 입력 파라미터 : 작성한 게시글 정보 -> 작성자, 제목, 내용
 	@Override
-	public void boardWriteEnrollment(HttpServletRequest req, Model model) {
-		
-		ShoppingQuestionBoardVo shoppingQuestionBoardVo = new ShoppingQuestionBoardVo();
-		shoppingQuestionBoardVo.setQuestionUser(req.getParameter("questionUser"));
-		shoppingQuestionBoardVo.setQuestionTitle(req.getParameter("questionTitle"));
-		shoppingQuestionBoardVo.setQuestionContent(req.getParameter("questionContent"));
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 	
-		shppingQuestionBoardDao.boardWriteEnrollment(shoppingQuestionBoardVo);
+		shppingQuestionBoardDao.shoppingQeustionBoardWriteEnrollment(shoppingQuestionBoardVo);
 	
 	}
 
@@ -52,14 +47,14 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 입력 파라미터 : 게시글 번호
 	// return : 게시글 정보 -> 글번호, 작성자, 제목, 내용, 등록일, 수정일, 삭제여부
 	@Override
-	public ShoppingQuestionBoardVo boardDetail(HttpServletRequest req, Model model) {
+	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 		
-		int boardNumber = Integer.parseInt(req.getParameter("questionNumber"));
+		int boardNumber = shoppingQuestionBoardVo.getQuestionNumber();
 		
 		ShoppingQuestionBoardVo shoppingQeustionBoardDetail = null;
 		
 		try {
-			shoppingQeustionBoardDetail = shppingQuestionBoardDao.boardDetail(boardNumber);
+			shoppingQeustionBoardDetail = shppingQuestionBoardDao.shoppingQuestionBoardDetail(boardNumber);
 		} catch (Exception e) {
 			System.err.println("Exception : " + e.getMessage());
 		}
@@ -70,18 +65,9 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 게시글 수정하기
 	// 입력 파라미터 : 게시글번호, 제목, 내용
 	@Override
-	public void boardUpdate(HttpServletRequest req, Model model) {
+	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 		
-		int boardNumber = Integer.parseInt(req.getParameter("questionNumber"));
-		String updateBoardTitle = req.getParameter("questionTitle");
-		String updateBoardContent = req.getParameter("questionContent");
-		
-		ShoppingQuestionBoardVo updateShoppingQuestionBoardVo = new ShoppingQuestionBoardVo();
-		updateShoppingQuestionBoardVo.setQuestionNumber(boardNumber);
-		updateShoppingQuestionBoardVo.setQuestionTitle(updateBoardTitle);
-		updateShoppingQuestionBoardVo.setQuestionContent(updateBoardContent);
-		
-		shppingQuestionBoardDao.boardUpdate(updateShoppingQuestionBoardVo);
+		shppingQuestionBoardDao.shoppingQuestionBoardUpdate(shoppingQuestionBoardVo);
 		
 		
 	}
@@ -89,10 +75,10 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 게시글 삭제하기
 	// 입력 파라미터 : 게시글 번호
 	@Override
-	public void boardDelete(HttpServletRequest req, Model model) {
+	public void shoppingQuestionBoardDelete(HttpServletRequest req, Model model) {
 		
 		int questionNumber = Integer.parseInt(req.getParameter("questionNumber"));
-		shppingQuestionBoardDao.boardDelete(questionNumber);
+		shppingQuestionBoardDao.shoppingQuestionBoardDelete(questionNumber);
 		
 	}
 }
