@@ -16,7 +16,6 @@ public class ShoppingQuestionBoardDaoImpl implements ShoppingQuestionBoardDao{
 	
 	// 게시글 목록 가져오기
 	// return : 모든 게시글의 정보
-	@Override
 	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList() {
 
 		List<ShoppingQuestionBoardVo> shoppingQuestionBoardList = sqlSession.selectList("com.yejin.spring.dao.ShoppingQuestionBoardDao.shoppingQuestionBoardList");

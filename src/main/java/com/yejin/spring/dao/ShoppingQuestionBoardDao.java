@@ -6,18 +6,18 @@ import com.yejin.spring.vo.ShoppingQuestionBoardVo;
 
 public interface ShoppingQuestionBoardDao {
 	
-	// ê²Œì‹œê¸€ ëª©ë¡ 
+	// °Ô½Ã±Û ¸ñ·Ï 
 	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList();
 	
-	// ê²Œì‹œê¸€ ë“±ë¡
+	// °Ô½Ã±Û µî·Ï
 	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 	
-	// ê²Œì‹œê¸€ ìƒì„¸ì •ë³´
+	// °Ô½Ã±Û »ó¼¼Á¤º¸
 	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(int questionNumber);
 
-	// ê²Œì‹œê¸€ ìˆ˜ì •
+	// °Ô½Ã±Û ¼öÁ¤
 	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 	
-	// ê²Œì‹œê¸€ ì‚­ì œ
+	// °Ô½Ã±Û »èÁ¦
 	public void shoppingQuestionBoardDelete(int questionNumber);
 }

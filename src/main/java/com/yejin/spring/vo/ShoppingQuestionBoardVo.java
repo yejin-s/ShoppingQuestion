@@ -4,25 +4,25 @@ import java.util.Date;
 
 public class ShoppingQuestionBoardVo {
 
-	// ê²Œì‹œê¸€ ë²ˆí˜¸
+	// °Ô½Ã±Û ¹øÈ£
 	int questionNumber;
 	
-	// ì‘ì„±ì
+	// ÀÛ¼ºÀÚ
 	String questionUser;
 	
-	// ì œëª©
+	// Á¦¸ñ
 	String questionTitle;
 	
-	// ë‚´ìš©
+	// ³»¿ë
 	String questionContent;	
 	
-	// ë“±ë¡ì¼
+	// µî·ÏÀÏ
 	Date questionRegDate;
 	
-	// ìˆ˜ì •ì¼
+	// ¼öÁ¤ÀÏ
 	Date qeustionModityRegDate;		
 	
-	// ì‚­ì œ ì—¬ë¶€
+	// »èÁ¦ ¿©ºÎ
 	String questionDeleteCheck;
 	
 	

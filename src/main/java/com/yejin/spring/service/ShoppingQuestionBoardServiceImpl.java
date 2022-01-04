@@ -20,7 +20,7 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 게시글 목록에 보여줄 정보 가져오기
 	// return : DB에 있는 모든 게시글 정보
 	@Override
-	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList(HttpServletRequest req, Model model) {
+	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList(Model model) {
 		
 		List<ShoppingQuestionBoardVo> shoppingQuestionBoardList = null;
 		
@@ -37,7 +37,7 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 작성한 게시글 내용 등록하기
 	// 입력 파라미터 : 작성한 게시글 정보 -> 작성자, 제목, 내용
 	@Override
-	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
 	
 		shppingQuestionBoardDao.shoppingQeustionBoardWriteEnrollment(shoppingQuestionBoardVo);
 	
@@ -75,9 +75,9 @@ public class ShoppingQuestionBoardServiceImpl implements ShoppingQuestionBoardSe
 	// 게시글 삭제하기
 	// 입력 파라미터 : 게시글 번호
 	@Override
-	public void shoppingQuestionBoardDelete(HttpServletRequest req, Model model) {
+	public void shoppingQuestionBoardDelete(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
 		
-		int questionNumber = Integer.parseInt(req.getParameter("questionNumber"));
+		int questionNumber = shoppingQuestionBoardVo.getQuestionNumber();
 		shppingQuestionBoardDao.shoppingQuestionBoardDelete(questionNumber);
 		
 	}

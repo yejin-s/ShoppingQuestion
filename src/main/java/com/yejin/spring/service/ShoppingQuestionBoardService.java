@@ -10,11 +10,11 @@ import com.yejin.spring.vo.ShoppingQuestionBoardVo;
 
 public interface ShoppingQuestionBoardService {
 
-	// 굴 목록
-	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList(HttpServletRequest req, Model model);
+	// 글 목록
+	public List<ShoppingQuestionBoardVo> shoppingQuestionBoardList(Model model);
 	
 	// 글쓰기 등록
-	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
+	public void shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 	
 	// 글 상세정보
 	public ShoppingQuestionBoardVo shoppingQuestionBoardDetail(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
@@ -23,5 +23,5 @@ public interface ShoppingQuestionBoardService {
 	public void shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model);
 	
 	// 글 삭제
-	public void shoppingQuestionBoardDelete(HttpServletRequest req, Model model);
+	public void shoppingQuestionBoardDelete(ShoppingQuestionBoardVo shoppingQuestionBoardVo);
 }

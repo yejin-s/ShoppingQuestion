@@ -19,37 +19,55 @@ public class HomeController {
 	@Autowired
 	ShoppingQuestionBoardService shoppingQuestionBoardService;
 	
-	// 글 목록 컨트롤러
-	// DB에 있는 모든 글정보를 가지고 home.jsp(글목록 페이지)로 이동.
+	/**
+	 * 글 목록 컨트롤러
+	 * DB에 있는 모든 글정보를 가지고 home.jsp(글목록 페이지)로 이동.
+	 * @param model
+	 * @return home
+	 */
 	@RequestMapping(value = "/shoppingQuestion/boardList")
 	public String shoppingQuestionBoardList(HttpServletRequest req, Model model) {
-		List<ShoppingQuestionBoardVo> shoppingQuestionBoardList = shoppingQuestionBoardService.shoppingQuestionBoardList(req, model);
+		List<ShoppingQuestionBoardVo> shoppingQuestionBoardList = shoppingQuestionBoardService.shoppingQuestionBoardList(model);
 		
 		model.addAttribute("shoppingQuestionBoardList", shoppingQuestionBoardList);
 		
 		return "home";
 	}
 	
-	// 글 쓰기 컨트롤러
-	// shoppingQuestionBoardWrite.jsp(글쓰기 페이지)로 이동
+	
+	/**
+	 * 글 쓰기 컨트롤러
+	 * shoppingQuestionBoardWrite.jsp(글쓰기 페이지)로 이동
+	 * @return shoppingQuestionBoardWrite
+	 */
 	@RequestMapping(value = "/shoppingQuestion/boardWrite")
-	public String shoppingQuestionBoardWrite(HttpServletRequest req, Model model) {
+	public String shoppingQuestionBoardWrite() {
 		
 		return "shoppingQuestionBoardWrite";
 	}
 	
-	// 작성한 글 등록하는 컨트롤러
-	// 작성한 글 정보들을 가지고 DB에 insert 후 글 목록 컨트롤러로 이동
-	@RequestMapping(value = "/shoppingQuestion/boardWriteEnrollment", method = RequestMethod.POST)
-	public String shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 	
-		shoppingQuestionBoardService.shoppingQeustionBoardWriteEnrollment(shoppingQuestionBoardVo, model);
+	/**
+	 * 작성한 글 등록하는 컨트롤러
+	 * 작성한 글 정보들을 가지고 DB에 insert 후 글 목록 컨트롤러로 이동
+	 * @param shoppingQuestionBoardVo
+	 * @return boardList
+	 */
+	@RequestMapping(value = "/shoppingQuestion/boardWriteEnrollment", method = RequestMethod.POST)
+	public String shoppingQeustionBoardWriteEnrollment(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
+	
+		shoppingQuestionBoardService.shoppingQeustionBoardWriteEnrollment(shoppingQuestionBoardVo);
 
 		return "redirect:/shoppingQuestion/boardList";
 	}
 	
-	// 글 제목 눌렀을 때, 상세정보 보여주는 컨트롤러
-	// 글 번호로 DB 접근 후 해당 정보를 가지고 shoppingQuestionBoardDetail.jsp(상세 페이지)로 이동
+	/**
+	 * 글 제목 눌렀을 때, 상세정보 보여주는 컨트롤러
+	 * 글 번호로 DB 접근 후 해당 정보를 가지고 shoppingQuestionBoardDetail.jsp(상세 페이지)로 이동
+	 * @param shoppingQuestionBoardVo
+	 * @param model
+	 * @return shoppingQuestionBoardDetail
+	 */
 	@RequestMapping(value = "/shoppingQuestion/boardDetail", method = RequestMethod.POST)
 	public String shoppingQuestionBoardDetail(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 		
@@ -60,9 +78,15 @@ public class HomeController {
 		return "shoppingQuestionBoardDetail";
 	}
 	
-	// 글 수정하는 페이지로 가는 컨트롤러
-	// 수정할 글의 정보를 가지고 shoppingQuestionBoardUpdatePage.jsp(수정 페이지)로 이동
-	@RequestMapping(value = "/shoppingQuestion/boardUpdatePage")
+	
+	/**
+	 * 글 수정하는 페이지로 가는 컨트롤러
+	 * 수정할 글의 정보를 가지고 shoppingQuestionBoardUpdatePage.jsp(수정 페이지)로 이동
+	 * @param shoppingQuestionBoardVo
+	 * @param model
+	 * @return shoppingQuestionBoardUpdatePage
+	 */
+	@RequestMapping(value = "/shoppingQuestion/boardUpdatePage", method = RequestMethod.POST)
 	public String shoppingQuestionBoardUpdatePage(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 		
 		ShoppingQuestionBoardVo shoppingQuestionBoardDetail = shoppingQuestionBoardService.shoppingQuestionBoardDetail(shoppingQuestionBoardVo, model);
@@ -72,8 +96,13 @@ public class HomeController {
 		return "shoppingQuestionBoardUpdatePage";
 	}
 	
-	// 글 수정한 내용 업데이트하는 컨트롤러
-	// 수정한 내용과 글 정보 update 한 후 shoppingQuestionBoardDetail.jsp(상세 페이지)로 이동
+	/**
+	 * 글 수정한 내용 업데이트하는 컨트롤러
+	 * 수정한 내용과 글 정보 update 한 후 shoppingQuestionBoardDetail.jsp(상세 페이지)로 이동
+	 * @param shoppingQuestionBoardVo
+	 * @param model
+	 * @return shoppingQuestionBoardDetail
+	 */
 	@RequestMapping(value = "/shoppingQuestion/boardUpdate", method = RequestMethod.POST)
 	public String shoppingQuestionBoardUpdate(ShoppingQuestionBoardVo shoppingQuestionBoardVo, Model model) {
 		
@@ -88,13 +117,17 @@ public class HomeController {
 		return "shoppingQuestionBoardDetail";
 	}
 	
-	// 글 삭제하는 컨트롤러
-	// 글 번호를 가지고 삭제 후 글 목록 컨트롤러로 이동
-	// 글 삭제는 N에서 Y로 변경
-	@RequestMapping(value = "/shoppingQuestion/boardDelete")
-	public String shoppingQuestionBoardDelete(HttpServletRequest req, Model model) {
+	/**
+	 * 글 삭제하는 컨트롤러
+	 * 글 번호를 가지고 삭제 후 글 목록 컨트롤러로 이동
+	 * 글 삭제는 N에서 Y로 변경
+	 * @param shoppingQuestionBoardVo
+	 * @return boardList
+	 */
+	@RequestMapping(value = "/shoppingQuestion/boardDelete", method = RequestMethod.POST)
+	public String shoppingQuestionBoardDelete(ShoppingQuestionBoardVo shoppingQuestionBoardVo) {
 		
-		shoppingQuestionBoardService.shoppingQuestionBoardDelete(req, model);
+		shoppingQuestionBoardService.shoppingQuestionBoardDelete(shoppingQuestionBoardVo);
 		
 		return "redirect:/shoppingQuestion/boardList";
 	}

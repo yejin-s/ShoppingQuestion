@@ -9,7 +9,7 @@
 <title>Shopping QUuestion Board Detail</title>
 </head>
 <body>
-	<form action = "/spring/shoppingQuestion/boardUpdatePage">
+	<form action = "/spring/shoppingQuestion/boardUpdatePage" method="post">
 		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionBoardDetail.questionNumber }">
 		<table border="1px">
 			<tr>
