@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yejin.spring.dao.ShoppingQuestionBoardDao">
+<mapper namespace="com.yejin.spring.dao.ShoppingQuestionDao">
 
-	<select id="shoppingQuestionBoardList" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
-		SELECT QUESTION_NUMBER as questionNumber
-		     , QUESTION_USER as questionUser
-		     , QUESTION_TITLE as questionTitle
-		     , QUESTION_CONTENT as questionContent
-		     , QEUSTION_REGDATE as questionRegDate
-		     , QESTION_MODIFY_REGDATE as qeustionModityRegDate
-		     , QESTION_DELETE_CHECK as questionDeleteCheck
+	<select id="questionList" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
+		SELECT QUESTION_NUMBER 
+		     , QUESTION_USER
+		     , QUESTION_TITLE
+		     , QUESTION_CONTENT
+		     , QUESTION_REGDATE
+		     , QUESTION_MODIFY_REGDATE
+		     , QUESTION_DELETE_CHECK
 		FROM SHOPPING_QUESTION_BOARD
-		WHERE QESTION_DELETE_CHECK = 'N'
+		WHERE QUESTION_DELETE_CHECK = 'N'
 	</select>
 	
-	<insert id="shoppingQeustionBoardWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+	<insert id="questionWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionVo">
 		INSERT INTO SHOPPING_QUESTION_BOARD(
 			QUESTION_NUMBER
 			, QUESTION_USER
 			, QUESTION_TITLE
 			, QUESTION_CONTENT
-			, QEUSTION_REGDATE)
+			, QUESTION_REGDATE)
 		VALUES(QUESTION_NUMBER_SEQ.NEXTVAL
 			, #{questionUser}
 			, #{questionTitle}
@@ -29,28 +29,28 @@
 			, SYSDATE)
 	</insert>
 	
-	<select id="shoppingQuestionBoardDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
-		SELECT QUESTION_NUMBER as questionNumber
-			    , QUESTION_USER as questionUser
-			    , QUESTION_TITLE as questionTitle
-			    , QUESTION_CONTENT as questionContent
-			    , QEUSTION_REGDATE as questionRegDate
-			    , QESTION_MODIFY_REGDATE as qeustionModityRegDate
-			    , QESTION_DELETE_CHECK as qeustionDeleteCheck
+	<select id="questionDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
+		SELECT QUESTION_NUMBER
+			    , QUESTION_USER
+			    , QUESTION_TITLE
+			    , QUESTION_CONTENT
+			    , QUESTION_REGDATE
+			    , QUESTION_MODIFY_REGDATE
+			    , QUESTION_DELETE_CHECK
 		FROM SHOPPING_QUESTION_BOARD
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</select>
 	
-	<update id="shoppingQuestionBoardUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionBoardVo">
+	<update id="questionUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionVo">
 		UPDATE SHOPPING_QUESTION_BOARD
 		SET QUESTION_TITLE = #{questionTitle}
 			, QUESTION_CONTENT= #{questionContent}
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 	
-	<update id="shoppingQuestionBoardDelete" parameterType="int">
+	<update id="questionDelete" parameterType="int">
 		UPDATE SHOPPING_QUESTION_BOARD
-		SET QESTION_DELETE_CHECK = 'Y'
+		SET QUESTION_DELETE_CHECK = 'Y'
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 

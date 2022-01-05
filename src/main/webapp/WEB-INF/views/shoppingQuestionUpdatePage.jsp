@@ -9,8 +9,8 @@
 </head>
 <body>
 
-	<form action="/spring/shoppingQuestion/boardUpdate" method="post">
-		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionBoardDetail.questionNumber }">
+	<form action="/spring/shopping/questionUpdate" method="post">
+		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionDetail.questionNumber }">
 		<table border="1px">
 			<tr>
 				<td>번호</td>
@@ -19,10 +19,10 @@
 				<td>내용</td>
 			</tr>
 			<tr>
-				<td>${shoppingQuestionBoardDetail.questionNumber }</td>
-				<td>${shoppingQuestionBoardDetail.questionUser }</td>
-				<td><input type="text" name="questionTitle" value="${shoppingQuestionBoardDetail.questionTitle }"></td>
-				<td><input type="text" name="questionContent" value="${shoppingQuestionBoardDetail.questionContent }"></td>
+				<td>${shoppingQuestionDetail.questionNumber }</td>
+				<td>${shoppingQuestionDetail.questionUser }</td>
+				<td><input type="text" name="questionTitle" value="${shoppingQuestionDetail.questionTitle }"></td>
+				<td><input type="text" name="questionContent" value="${shoppingQuestionDetail.questionContent }"></td>
 			</tr>
 		</table>
 		<table>

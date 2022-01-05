@@ -2,28 +2,46 @@ package com.yejin.spring.vo;
 
 import java.util.Date;
 
-public class ShoppingQuestionBoardVo {
+/**
+ * @author 설예진
+ * 쇼핑몰 문의게시판 Vo
+ */
+public class ShoppingQuestionVo {
 
-	// 게시글 번호
-	int questionNumber;
+	/**
+	 * 게시글 번호
+	 */
+	private int questionNumber;
 	
-	// 작성자
-	String questionUser;
+	/**
+	 * 작성자
+	 */
+	private String questionUser;
 	
-	// 제목
-	String questionTitle;
+	/**
+	 * 제목
+	 */
+	private String questionTitle;
 	
-	// 내용
-	String questionContent;	
+	/**
+	 * 내용
+	 */
+	private String questionContent;	
 	
-	// 등록일
-	Date questionRegDate;
+	/**
+	 * 등록일
+	 */
+	private Date questionRegdate;
 	
-	// 수정일
-	Date qeustionModityRegDate;		
+	/**
+	 * 수정일
+	 */
+	private Date questionModityRegdate;		
 	
-	// 삭제 여부
-	String questionDeleteCheck;
+	/**
+	 * 삭제 여부 (Y: 삭제, N: 미삭제)
+	 */
+	private String questionDeleteCheck;
 	
 	
 	public String getQuestionDeleteCheck() {
@@ -56,16 +74,18 @@ public class ShoppingQuestionBoardVo {
 	public void setQuestionContent(String questionContent) {
 		this.questionContent = questionContent;
 	}
-	public Date getQuestionRegDate() {
-		return questionRegDate;
+	public Date getQuestionRegdate() {
+		return questionRegdate;
 	}
-	public void setQuestionRegDate(Date questionRegDate) {
-		this.questionRegDate = questionRegDate;
+	public void setQuestionRegdate(Date questionRegdate) {
+		this.questionRegdate = questionRegdate;
 	}
-	public Date getQeustionModityRegDate() {
-		return qeustionModityRegDate;
+	public Date getQuestionModityRegdate() {
+		return questionModityRegdate;
 	}
-	public void setQeustionModityRegDate(Date qeustionModityRegDate) {
-		this.qeustionModityRegDate = qeustionModityRegDate;
+	public void setQuestionModityRegdate(Date questionModityRegdate) {
+		this.questionModityRegdate = questionModityRegdate;
 	}
+
+
 }
