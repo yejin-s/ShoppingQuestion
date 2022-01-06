@@ -9,11 +9,10 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/js/**" location="/resources/js/" /> 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,8 +20,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.yejin.spring" />
+	<context:component-scan base-package="com.yejin..*" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
 	
 	
 </beans:beans>

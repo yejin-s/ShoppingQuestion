@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charsetUTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="/spring/resources/js/home.js"></script>
+<script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 <meta charset="EUC-KR">
 <title>Shopping Question Board Write</title>

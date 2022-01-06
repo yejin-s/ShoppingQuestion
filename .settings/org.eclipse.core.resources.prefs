@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/yejin/spring/HomeController.java=UTF-8
+encoding//src/main/java/com/yejin/spring/ShoppingJoinUserController.java=UTF-8
+encoding//src/main/java/com/yejin/spring/ShoppingQuestionController.java=UTF-8
 encoding//src/main/java/com/yejin/spring/dao/ShoppingQuestionDaoImpl.java=UTF-8
 encoding//src/main/java/com/yejin/spring/service/ShoppingQuestionService.java=UTF-8
 encoding//src/main/java/com/yejin/spring/service/ShoppingQuestionServiceImpl.java=UTF-8

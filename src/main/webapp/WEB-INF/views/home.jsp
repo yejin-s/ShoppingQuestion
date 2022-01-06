@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charsetUTF-8" pageEncoding="UTF-8" %>
 <html>
-<script type="text/javascript" src="/spring/resources/js/home.js"></script>
+<script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 	<title>Shopping Question Board</title>
 	

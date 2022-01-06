@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="/spring/resources/js/home.js"></script>
+<script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 <title>Shopping QUuestion Board Update Page</title>
 </head>

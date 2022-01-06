@@ -20,9 +20,9 @@ import com.yejin.spring.vo.ShoppingQuestionVo;
  * 쇼핑몰 문의게시판 목록, 등록, 상세정보 보기, 수정, 삭제 컨트롤러
  */
 @Controller
-public class HomeController {
+public class ShoppingQuestionController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ShoppingQuestionController.class);
 	
 	@Autowired
 	ShoppingQuestionService shoppingQuestionService;

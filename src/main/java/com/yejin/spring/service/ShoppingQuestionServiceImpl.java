@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-import com.yejin.spring.HomeController;
+import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingQuestionDao;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -19,7 +19,7 @@ import com.yejin.spring.vo.ShoppingQuestionVo;
 @Service
 public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ShoppingQuestionController.class);
 	
 	@Autowired 
 	ShoppingQuestionDao shppingQuestionDao;
