@@ -30,6 +30,35 @@ function goUserJoin(){
 	document.shoppingUserJoinForm.submit();
 }
 
+function goUserLogin(){
+	
+	var form = document.shoppingUserForm;
+	
+	var userId = form.userId.value;
+	var userPassword = form.userPassword.value;
+	
+	var loginUserData = {
+		userId : userId,
+		userPassword : userPassword
+	}
+	
+	$.ajax({
+		url : "/spring/shopping/loginCheck",
+		data : loginUserData,
+		method : "post",
+		dataType : "text",
+		success : function(resultLoginCheck){
+			if(resultLoginCheck == "Y"){
+				location.href="/spring/shopping/questionList";
+			}else{
+				alert("로그인 정보가 잘못되었습니다.")
+			}
+		},
+		error : function(){
+			alert("LOGIN ERROR")
+		}
+	});
+}
 
 
 

@@ -2,7 +2,7 @@ package com.yejin.spring.vo;
 
 import java.util.Date;
 
-public class ShoppingJoinUserVo {
+public class ShoppingUserVo {
 
 	/**
 	 * 유저 아이디
