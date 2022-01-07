@@ -2,6 +2,10 @@ package com.yejin.spring.vo;
 
 import java.util.Date;
 
+/**
+ * @author 설예진
+ * 유저 Vo
+ */
 public class ShoppingUserVo {
 
 	/**
