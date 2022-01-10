@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +32,9 @@ public class ShoppingUserController {
 	 * @return userLoginPage
 	 */
 	@RequestMapping(value = "/shopping/loginPage", method = RequestMethod.GET)
-	public String loginPage() {
+	public String loginPage(Model model) {
+		
+		model.addAttribute("resultCode", "");
 		
 		return "userLoginPage";
 	}
@@ -66,11 +69,12 @@ public class ShoppingUserController {
 	 * @return loginPage
 	 */
 	@RequestMapping(value = "/shopping/userJoin", method = RequestMethod.POST)
-	public String userJoin(ShoppingUserVo shoppingUserVo) {
+	public String userJoin(ShoppingUserVo shoppingUserVo, Model model) {
 		
-		shoppingUserService.userJoin(shoppingUserVo);
+		String resultCode = shoppingUserService.userJoin(shoppingUserVo);
+		model.addAttribute("resultCode" + resultCode);
 		
-		return "redirect:/shopping/loginPage";
+		return "userLoginPage";
 	}
 	
 	/**
@@ -80,7 +84,7 @@ public class ShoppingUserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/shopping/loginCheck", method = RequestMethod.POST)
-	public String loginCheck(HttpServletRequest req) {
+	public String loginCheck(HttpServletRequest req, Model model) {
 		
 		ShoppingUserVo resultLoginCheck = shoppingUserService.loginCheck(req);
 		String resultLoginCheckYN = "N";

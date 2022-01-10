@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.yejin.spring.paging.Criteria;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -19,13 +20,13 @@ public interface ShoppingQuestionService {
 	 * @param model
 	 * @return List<ShoppingQuestionVo>
 	 */
-	public List<ShoppingQuestionVo> questionList(Model model);
+	public List<ShoppingQuestionVo> questionList();
 	
 	/**
 	 * 글쓰기 등록
 	 * @param shoppingQuestionVo
 	 */
-	public void questionWriteEnrollment(ShoppingQuestionVo shoppingQuestionVo);
+	public String questionWriteEnrollment(ShoppingQuestionVo shoppingQuestionVo);
 	
 	/**
 	 * 글 상세정보
@@ -33,18 +34,22 @@ public interface ShoppingQuestionService {
 	 * @param model
 	 * @return shoppingQuestionVo
 	 */
-	public ShoppingQuestionVo questionDetail(ShoppingQuestionVo shoppingQuestionVo, Model model);
+	public ShoppingQuestionVo questionDetail(ShoppingQuestionVo shoppingQuestionVo);
 	
 	/**
 	 * 글 수정
 	 * @param shoppingQuestionVo
 	 * @param model
 	 */
-	public void questionUpdate(ShoppingQuestionVo shoppingQuestionVo, Model model);
+	public String questionUpdate(ShoppingQuestionVo shoppingQuestionVo);
 	
 	/**
 	 * 글 삭제
 	 * @param shoppingQuestionVo
 	 */
-	public void questionDelete(ShoppingQuestionVo shoppingQuestionVo);
+	public String questionDelete(ShoppingQuestionVo shoppingQuestionVo);
+	
+	public List<ShoppingQuestionVo> questionListStartPage(Model model);
+	
+	public List<ShoppingQuestionVo> pageMove(HttpServletRequest req, Model model);
 }

@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 <meta charset="EUC-KR">
-<title>Shopping Question Board Write</title>
+<title>SHOPPING QUESTION WRITE PAGE</title>
 </head>
 <body>
 	<form action="/spring/shopping/questionWriteEnrollment" method="post">

@@ -5,7 +5,7 @@
 <html>
 <script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
-<title>Shopping QUuestion Board Update Page</title>
+<title>SHOPPING QUESTION UPDATE PAGE</title>
 </head>
 <body>
 

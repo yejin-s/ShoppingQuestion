@@ -6,9 +6,9 @@
 <script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 <meta charset="EUC-KR">
-<title>Shopping QUuestion Board Detail</title>
+<title>SHOPPING QUESTION DETAIL PAGE</title>
 </head>
-<body>
+<body onload="javascript:goUpdateeResultCodeAlert(${resultCode})">
 	<form action = "/spring/shopping/questionUpdatePage" method="post">
 		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionDetail.questionNumber }">
 		<table border="1px">

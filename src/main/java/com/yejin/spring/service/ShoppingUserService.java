@@ -21,7 +21,7 @@ public interface ShoppingUserService {
 	 * 회원가입
 	 * @param shoppingUserVo
 	 */
-	public void userJoin(ShoppingUserVo shoppingUserVo);
+	public String userJoin(ShoppingUserVo shoppingUserVo);
 	
 	/**
 	 * 로그인

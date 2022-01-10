@@ -8,7 +8,7 @@
 	<title>Shopping Question Board</title>
 	
 </head>
-<body>
+<body onload="javascript:goWriteResultCodeAlert('${resultCode}','${type}')">
 	<table border="1px">
 		<tr>
 			<td>번호</td>

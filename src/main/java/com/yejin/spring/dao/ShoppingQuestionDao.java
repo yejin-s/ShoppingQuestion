@@ -2,6 +2,8 @@ package com.yejin.spring.dao;
 
 import java.util.List;
 
+import com.yejin.spring.paging.Criteria;
+import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -41,4 +43,8 @@ public interface ShoppingQuestionDao {
 	 * @param questionNumber
 	 */
 	public void questionDelete(int questionNumber);
+	
+	public int qeustionTotalCount();
+	
+	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo);
 }

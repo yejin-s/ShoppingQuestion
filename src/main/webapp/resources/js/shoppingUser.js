@@ -49,6 +49,7 @@ function goUserLogin(){
 		dataType : "text",
 		success : function(resultLoginCheck){
 			if(resultLoginCheck == "Y"){
+				alert("로그인 성공하셨습니다.")
 				location.href="/spring/shopping/questionList";
 			}else{
 				alert("로그인 정보가 잘못되었습니다.")

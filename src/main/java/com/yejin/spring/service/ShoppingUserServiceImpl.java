@@ -4,11 +4,15 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingUserDao;
 import com.yejin.spring.sha256.Sha256;
+import com.yejin.spring.util.QuestionEnum;
 import com.yejin.spring.vo.ShoppingUserVo;
 
 /**
@@ -18,6 +22,8 @@ import com.yejin.spring.vo.ShoppingUserVo;
 @Service
 public class ShoppingUserServiceImpl implements ShoppingUserService{
 
+	private static final Logger LOG = LoggerFactory.getLogger(ShoppingQuestionController.class);
+	
 	@Autowired
 	ShoppingUserDao shoppingUserDao;
 
@@ -46,10 +52,11 @@ public class ShoppingUserServiceImpl implements ShoppingUserService{
 	 * SHA-256 방법으로 비밀번호 암호화
 	 */
 	@Override
-	public void userJoin(ShoppingUserVo shoppingUserVo) {
+	public String userJoin(ShoppingUserVo shoppingUserVo) {
 		
 		Sha256 sha256 = new Sha256();
 		String encryptPassword = null;
+		String resultCode = "";
 		
 		try {
 			// Sha256 객체를 만들어 입력한 비밀번호를 암호화 한다.
@@ -62,9 +69,18 @@ public class ShoppingUserServiceImpl implements ShoppingUserService{
 		// 암호화한 비밀번호를 다시 Vo에 담아 insert 해준다.
 		shoppingUserVo.setUserPassword(encryptPassword);
 		
-
-		shoppingUserDao.userJoin(shoppingUserVo);
+		try {
+			shoppingUserDao.userJoin(shoppingUserVo);
+			resultCode = QuestionEnum.RESULT_SUCCESS.getValue();
+			LOG.info("[USER] userJoin : " +  resultCode);
+			
+		} catch (Exception e) {
+			resultCode = QuestionEnum.RESULT_FAIL.getValue();
+			LOG.error("[USER] userJoin : " +  resultCode);
+		}
 		
+		
+		return encryptPassword;
 	}
 
 	/**

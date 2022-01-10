@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yejin.spring.paging.Criteria;
+import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -71,5 +73,20 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	public void questionDelete(int questionNumber) {
 		sqlSession.update("questionDelete", questionNumber);
 		
+	}
+
+	@Override
+	public int qeustionTotalCount() {
+		
+		int qeustionTotalCount = sqlSession.selectOne("qeustionTotalCount");
+		return qeustionTotalCount;
+	}
+	
+	@Override
+	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo) {
+		
+		List<ShoppingQuestionVo> questionListPaging = sqlSession.selectList("questionListPaging", pagingVo);
+		
+		return questionListPaging;
 	}
 }
