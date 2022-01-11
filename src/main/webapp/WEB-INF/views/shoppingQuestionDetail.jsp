@@ -22,7 +22,7 @@
 				<td>기타</td>
 			</tr>
 			<tr>
-				<td>${shoppingQuestionDetail.questionNumber }</td>
+				<td>${shoppingQuestionDetail.rowNumber }</td>
 				<td>${shoppingQuestionDetail.questionTitle }</td>
 				<td>${shoppingQuestionDetail.questionContent }</td>
 				<td>${shoppingQuestionDetail.questionUser }</td>

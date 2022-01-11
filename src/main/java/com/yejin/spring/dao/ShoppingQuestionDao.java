@@ -11,13 +11,7 @@ import com.yejin.spring.vo.ShoppingQuestionVo;
  *
  */
 public interface ShoppingQuestionDao {
-	
-	/**
-	 * 게시글 목록 
-	 * @return List<ShoppingQuestiondVo>
-	 */
-	public List<ShoppingQuestionVo> questionList();
-	
+
 	/**
 	 * 게시글 등록
 	 * @param shoppingQuestionVo

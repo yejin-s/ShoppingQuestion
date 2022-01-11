@@ -20,17 +20,6 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	SqlSession sqlSession;
 	
 	/**
-	 * 게시글 목록 가져오기 /
-	 * return : 모든 게시글의 정보
-	 */
-	public List<ShoppingQuestionVo> questionList() {
-
-		List<ShoppingQuestionVo> shoppingQuestiondList = sqlSession.selectList("questionList");
-				
-		return shoppingQuestiondList;
-	}
-
-	/**
 	 * 게시글 등록하기 /
 	 * 입력 파라미터 : 작성한 글 정보 -> 작성자, 제목, 내용을 VO에 담아서 mapper로 이동
 	 */

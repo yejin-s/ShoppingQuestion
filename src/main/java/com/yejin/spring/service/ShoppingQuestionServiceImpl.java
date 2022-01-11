@@ -29,26 +29,6 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	ShoppingQuestionDao shppingQuestionDao;
 	
 	/**
-	 * 게시글 목록에 보여줄 정보 가져오기 /
-	 * return : DB에 있는 모든 게시글 정보
-	 */
-	@Override
-	public List<ShoppingQuestionVo> questionList() {
-		
-		List<ShoppingQuestionVo> shoppingQuestionList = null;
-		
-		try {
-			shoppingQuestionList = shppingQuestionDao.questionList();
-		} catch (Exception e) {
-			
-			LOG.error("[QUESTION] questionList : " + e.getMessage());
-		}
-				
-
-		return shoppingQuestionList;
-	}
-
-	/**
 	 * 작성한 게시글 내용 등록하기 /
 	 * 입력 파라미터 : 작성한 게시글 정보 -> 작성자, 제목, 내용
 	 */
@@ -139,18 +119,17 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	 * 페이징 처리한 쇼핑몰 문의게시판 목록 /
 	 */
 	@Override
-	public List<ShoppingQuestionVo> questionListStartPage(HttpServletRequest req, Model model) {
-		PagingVo pagingVo = new PagingVo();
+	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo, Model model) {
 		int nowPageNumber = 1;
 		
-		if(req.getParameter("pageNumber") != null) {
-			int endPage = Integer.parseInt(req.getParameter("pageNumber")) * 5;
+		if(pagingVo.getPageNumber() != 0) {
+			int endPage = pagingVo.getPageNumber() * 5;
 			int startPage = endPage - 4;
 			
 			pagingVo.setEndPage(endPage);
 			pagingVo.setStartPage(startPage);
 			
-			nowPageNumber = Integer.parseInt(req.getParameter("pageNumber"));
+			nowPageNumber = pagingVo.getPageNumber();
 			
 		}
 		

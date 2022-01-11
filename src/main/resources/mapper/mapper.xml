@@ -3,18 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yejin.spring.dao.ShoppingQuestionDao">
 
-	<select id="questionList" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
-		SELECT QUESTION_NUMBER 
-		     , QUESTION_USER
-		     , QUESTION_TITLE
-		     , QUESTION_CONTENT
-		     , QUESTION_REGDATE
-		     , QUESTION_MODIFY_REGDATE
-		     , QUESTION_DELETE_CHECK
-		FROM SHOPPING_QUESTION_BOARD
-		WHERE QUESTION_DELETE_CHECK = 'N'
-	</select>
-	
 	<insert id="questionWriteEnrollment" parameterType="com.yejin.spring.vo.ShoppingQuestionVo">
 		INSERT INTO SHOPPING_QUESTION_BOARD(
 			QUESTION_NUMBER
@@ -30,7 +18,8 @@
 	</insert>
 	
 	<select id="questionDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
-		SELECT RN as questionNumber
+		SELECT RN as rowNumber
+				, QUESTION_NUMBER 
 			    , QUESTION_USER
 			    , QUESTION_TITLE
 			    , QUESTION_CONTENT
@@ -50,7 +39,7 @@
 		    WHERE QUESTION_DELETE_CHECK = 'N'
 		    ORDER BY QUESTION_NUMBER ASC
 		)
-		WHERE RN = #{questionNumber}
+		WHERE QUESTION_NUMBER = #{questionNumber}
 	</select>
 	
 	<update id="questionUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionVo">
@@ -74,7 +63,8 @@
 	
 	<select id="questionListPaging" parameterType="com.yejin.spring.vo.PagingVo" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
 		<![CDATA[
-			SELECT TO_NUMBER(#{startPage} -1 + rownum) AS questionNumber
+			SELECT TO_NUMBER(#{startPage} -1 + rownum) AS rowNumber
+				, QUESTION_NUMBER 
 				, QUESTION_USER
         		, QUESTION_TITLE
         		, QUESTION_CONTENT

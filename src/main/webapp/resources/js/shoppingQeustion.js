@@ -1,4 +1,4 @@
-// 글쓰기 페이지로 가는 함수
+  // 글쓰기 페이지로 가는 함수
 function goShoppingQuestionWrite(){
 	document.shoppingQuestionForm.action = "/spring/shopping/questionWrite";
 	document.shoppingQuestionForm.submit();
@@ -53,7 +53,15 @@ function goUpdateeResultCodeAlert(resultCode){
 }
 
 function goPage(pageNumber){
-	location.href="/spring/shopping/questionListPaging?pageNumber="+pageNumber;
+	
+	/*document.shoppingQuestionForm.pageNumber.value = pageNumber;
+	document.shoppingQuestionForm.action="/spring/shopping/questionListPaging";
+	document.shoppingQuestionForm.submit();*/
+	alert(pageNumber);
+	document.shoppingQuestionForm.pageNumber.value = pageNumber;
+	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
+	document.shoppingQuestionForm.submit();
+	
 }
 
 

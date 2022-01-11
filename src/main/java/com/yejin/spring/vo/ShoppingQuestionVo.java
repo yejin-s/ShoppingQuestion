@@ -43,6 +43,8 @@ public class ShoppingQuestionVo {
 	 */
 	private String questionDeleteCheck;
 	
+	private int rowNumber;
+	
 	
 	public String getQuestionDeleteCheck() {
 		return questionDeleteCheck;
@@ -85,6 +87,12 @@ public class ShoppingQuestionVo {
 	}
 	public void setQuestionModityRegdate(Date questionModityRegdate) {
 		this.questionModityRegdate = questionModityRegdate;
+	}
+	public int getRowNumber() {
+		return rowNumber;
+	}
+	public void setRowNumber(int rowNumber) {
+		this.rowNumber = rowNumber;
 	}
 
 

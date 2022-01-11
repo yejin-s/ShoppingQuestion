@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -14,13 +15,6 @@ import com.yejin.spring.vo.ShoppingQuestionVo;
  */
 public interface ShoppingQuestionService {
 
-	/**
-	 * 글 목록
-	 * @param model
-	 * @return List<ShoppingQuestionVo>
-	 */
-	public List<ShoppingQuestionVo> questionList();
-	
 	/**
 	 * 글쓰기 등록
 	 * @param shoppingQuestionVo
@@ -53,6 +47,6 @@ public interface ShoppingQuestionService {
 	 * @param model
 	 * @return List<ShoppingQuestionVo>
 	 */
-	public List<ShoppingQuestionVo> questionListStartPage(HttpServletRequest req, Model model);
+	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo, Model model);
 	
 }

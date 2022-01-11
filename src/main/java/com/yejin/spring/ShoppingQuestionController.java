@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yejin.spring.service.ShoppingQuestionService;
+import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -28,23 +29,6 @@ public class ShoppingQuestionController {
 
 	@Autowired
 	ShoppingQuestionService shoppingQuestionService;
-
-	/**
-	 * 글 목록 컨트롤러 DB에 있는 모든 글정보를 가지고 home.jsp(글목록 페이지)로 이동.
-	 * 
-	 * @param model
-	 * @return home 직접 브라우저에서 호출해야 하기때문에 GET방식으로 했다
-	 */
-	@RequestMapping(value = "/shopping/questionList", method = RequestMethod.GET)
-	public String questionList(Model model) {
-
-		List<ShoppingQuestionVo> shoppingQuestionList = shoppingQuestionService.questionList();
-
-		model.addAttribute("resultCode", resultCode);
-		model.addAttribute("shoppingQuestionList", shoppingQuestionList);
-
-		return "home";
-	}
 
 	/**
 	 * 글 쓰기 컨트롤러 / shoppingQuestionWrite.jsp(글쓰기 페이지)로 이동 /
@@ -184,10 +168,10 @@ public class ShoppingQuestionController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/shopping/questionListPaging", method = RequestMethod.GET)
-	public String questionListPaging(HttpServletRequest req, Model model) {
+	@RequestMapping(value = "/shopping/questionListPaging", method = RequestMethod.POST)
+	public String questionListPaging(PagingVo pagingVo, Model model) {
 
-		List<ShoppingQuestionVo> questionListPaging = shoppingQuestionService.questionListStartPage(req, model);
+		List<ShoppingQuestionVo> questionListPaging = shoppingQuestionService.questionListStartPage(pagingVo, model);
 
 		model.addAttribute("resultCode", resultCode);
 		model.addAttribute("questionListPaging", questionListPaging);

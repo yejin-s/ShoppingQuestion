@@ -50,7 +50,13 @@ function goUserLogin(){
 		success : function(resultLoginCheck){
 			if(resultLoginCheck == "Y"){
 				alert("로그인 성공하셨습니다.")
-				location.href="/spring/shopping/questionListPaging";
+				
+				let loginForm = document.createElement("form");
+				loginForm.setAttribute("method", "post");
+				loginForm.setAttribute("action", "/spring/shopping/questionListPaging");
+				document.body.appendChild(loginForm);
+				loginForm.submit();
+				
 			}else{
 				alert("로그인 정보가 잘못되었습니다.")
 			}
