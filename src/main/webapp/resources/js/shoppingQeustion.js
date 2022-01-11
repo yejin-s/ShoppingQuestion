@@ -26,34 +26,34 @@ function goShoppingQuestionDelete(questionNumber){
 	
 }
 
-function goWriteResultCodeAlert(resultCode, type){
+function goWriteResultCodeAlert(resultCode){
 	
-	if(resultCode == "0000"){
-		if(type == "작성"){
-			alert("작성 성공");
-		}else{
-			alert("삭제 성공");
-		}
-	}else if(resultCode == "9999"){
-		if(type == "작성"){
-			alert("작성 실패");
-		}else{
-			alert("삭제 실패");
-		}
+	if(resultCode == "0001"){
+		alert("작성 성공");
+		
+	}else if(resultCode == "9991"){
+		alert("작성 실패");
+		
+	}else if(resultCode == "0002"){
+		alert("삭제 성공");
+		
+	}else if(resultCode == "9992"){
+		alert("삭제 실패");
+		
 	}
 }
 
 function goUpdateeResultCodeAlert(resultCode){
 	
-	if(resultCode == "0000"){
+	if(resultCode == "0003"){
 		alert("수정 성공");
-	}else if(resultCode == "9999"){
+	}else if(resultCode == "9993"){
 		alert("수정 실패");
 	}
 }
 
 function goPage(pageNumber){
-	location.href="/spring/shopping/pageMove?pageNumber="+pageNumber;
+	location.href="/spring/shopping/questionListPaging?pageNumber="+pageNumber;
 }
 
 

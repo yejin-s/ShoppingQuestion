@@ -72,7 +72,7 @@ public class ShoppingUserController {
 	public String userJoin(ShoppingUserVo shoppingUserVo, Model model) {
 		
 		String resultCode = shoppingUserService.userJoin(shoppingUserVo);
-		model.addAttribute("resultCode" + resultCode);
+		model.addAttribute("resultCode", resultCode);
 		
 		return "userLoginPage";
 	}

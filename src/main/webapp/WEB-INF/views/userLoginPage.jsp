@@ -7,7 +7,7 @@
 <meta charset="EUC-KR">
 <title>USER LOGIN PAGE</title>
 </head>
-<body>
+<body onload="javascript:goLoginPageJoinCheck(${resultCode})">
 	<form action="javascript:goUserLogin()" name="shoppingUserForm" method="post">
 		<table>
 			<tr>

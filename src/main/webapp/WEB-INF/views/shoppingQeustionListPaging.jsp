@@ -74,7 +74,7 @@
 		<c:when test="${nowPageNumber < 6}">
 			<table>
 				<tr>
-					<c:forEach var="pageNumber" begin="1" end="5">
+					<c:forEach var="pageNumber" begin="1" end="${nowPageNumber}">
 						<td><input type="submit" value="${pageNumber}"
 							onclick="javascript:goPage(${pageNumber})"></td>
 					</c:forEach>
@@ -112,22 +112,8 @@
 				</tr>
 			</table>
 		</c:when>
-
-
 	</c:choose>
 
-
-
-	<%-- <table>
-		<tr>
-			<c:forEach var="pageNumber" begin="1" end="${pageNumber}">
-			<td>
-				<input type="submit" value="${pageNumber}" onclick="javascript:goPage(${pageNumber})">
-			</td>
-			</c:forEach>
-		
-		</tr>
-	</table> --%>
 	<table>
 		<tr>
 			<td><input type="button" value="글쓰기"

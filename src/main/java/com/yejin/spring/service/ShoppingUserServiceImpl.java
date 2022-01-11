@@ -49,63 +49,37 @@ public class ShoppingUserServiceImpl implements ShoppingUserService{
 
 	/**
 	 *	유저 회원가입 / 
-	 * SHA-256 방법으로 비밀번호 암호화
+	 * SHA-256 방법으로 Co에서 비밀번호 암호화
 	 */
 	@Override
 	public String userJoin(ShoppingUserVo shoppingUserVo) {
 		
-		Sha256 sha256 = new Sha256();
-		String encryptPassword = null;
 		String resultCode = "";
 		
 		try {
-			// Sha256 객체를 만들어 입력한 비밀번호를 암호화 한다.
-			encryptPassword = sha256.encrypt(shoppingUserVo.getUserPassword());
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		// 암호화한 비밀번호를 다시 Vo에 담아 insert 해준다.
-		shoppingUserVo.setUserPassword(encryptPassword);
-		
-		try {
 			shoppingUserDao.userJoin(shoppingUserVo);
-			resultCode = QuestionEnum.RESULT_SUCCESS.getValue();
+			resultCode = QuestionEnum.JOIN_SUCCESS.getValue();
 			LOG.info("[USER] userJoin : " +  resultCode);
 			
 		} catch (Exception e) {
-			resultCode = QuestionEnum.RESULT_FAIL.getValue();
+			resultCode = QuestionEnum.JOIN_FAIL.getValue();
 			LOG.error("[USER] userJoin : " +  resultCode);
 		}
 		
-		
-		return encryptPassword;
+		return resultCode;
 	}
 
 	/**
 	 * 로그인 /
-	 * 로그인 페이지에서 가져온 비밀번호를 SHA-256 방식으로 암호화
 	 */
 	@Override
 	public ShoppingUserVo loginCheck(HttpServletRequest req) {
 		
-		Sha256 sha256 = new Sha256();
-		String encryptPassword = null;
-		
-		try {
-			// 비밀번호를 Sha256객체로 암호화 해준다.
-			encryptPassword = sha256.encrypt(req.getParameter("userPassword"));
-			
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		
-		// 암호화 한 비밀번호를 Vo에 담아 select문에서 조건을 걸어준다.
 		ShoppingUserVo shoppingUserVo = new ShoppingUserVo();
+		
 		shoppingUserVo.setUserId(req.getParameter("userId"));
 		shoppingUserVo.setUserName(req.getParameter("userName"));
-		shoppingUserVo.setUserPassword(encryptPassword);
+		shoppingUserVo.setUserPassword(req.getParameter("userPassword"));
 			
 		ShoppingUserVo resultLoginCheckVo = shoppingUserDao.loginUserInfomation(shoppingUserVo);
 		 

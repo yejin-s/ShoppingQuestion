@@ -2,9 +2,9 @@ package com.yejin.spring.vo;
 
 public class PagingVo {
 	
-	private int startPage;
+	private int startPage = 1;
 	
-	private int endPage;
+	private int endPage = 5;
 
 	public int getStartPage() {
 		return startPage;

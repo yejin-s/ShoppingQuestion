@@ -2,7 +2,6 @@ package com.yejin.spring.dao;
 
 import java.util.List;
 
-import com.yejin.spring.paging.Criteria;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -44,7 +43,16 @@ public interface ShoppingQuestionDao {
 	 */
 	public void questionDelete(int questionNumber);
 	
+	/**
+	 * 전체 게시글의 수 가져오기
+	 * @return int
+	 */
 	public int qeustionTotalCount();
 	
+	/**
+	 * 페이징 처리한 쇼핑몰 문의 게시판 
+	 * @param pagingVo
+	 * @return List<ShoppingQuestionVo>
+	 */
 	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo);
 }

@@ -36,11 +36,6 @@
 				<td><input type="submit" value="수정"></td>
 			</tr>
 		</table>
-		<table>
-			<tr>
-				<td><input type="button" value="뒤로" onclick="javascript:goShoppingQuestionList()"></td>
-			</tr>
-		</table>
 	</form>
 	
 </body>

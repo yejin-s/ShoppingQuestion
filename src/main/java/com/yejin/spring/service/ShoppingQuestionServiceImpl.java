@@ -6,14 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingQuestionDao;
-import com.yejin.spring.paging.Criteria;
 import com.yejin.spring.util.QuestionEnum;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
@@ -61,12 +59,12 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		try {
 			shppingQuestionDao.questionWriteEnrollment(shoppingQuestionVo);
-			resultCode = QuestionEnum.RESULT_SUCCESS.getValue();
+			resultCode = QuestionEnum.WRITE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionWriteEnrollment : " + resultCode);
 			
 		} catch (Exception e) {
 			
-			resultCode = QuestionEnum.RESULT_FAIL.getValue();
+			resultCode = QuestionEnum.WRITE_FAIL.getValue();
 			LOG.error("[QUESTION] questionWriteEnrollment : " + resultCode);
 		}
 		
@@ -82,7 +80,6 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	 */
 	@Override
 	public ShoppingQuestionVo questionDetail(ShoppingQuestionVo shoppingQuestionVo) {
-		
 		int boardNumber = shoppingQuestionVo.getQuestionNumber();
 		
 		ShoppingQuestionVo shoppingQeustionDetail = null;
@@ -102,12 +99,12 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		String resultCode = "";
 		try {
 			shppingQuestionDao.questionUpdate(shoppingQuestionVo);
-			resultCode = QuestionEnum.RESULT_SUCCESS.getValue();
+			resultCode = QuestionEnum.UPDATE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionUpdate : " + resultCode);
 			
 		} catch (Exception e) {
 			
-			resultCode = QuestionEnum.RESULT_FAIL.getValue();
+			resultCode = QuestionEnum.UPDATE_FAIL.getValue();
 			LOG.error("[QUESTION] questionUpdate : " + resultCode);		}
 		
 		return resultCode;
@@ -125,13 +122,14 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		try {
 			shppingQuestionDao.questionDelete(questionNumber);
-			resultCode = QuestionEnum.RESULT_SUCCESS.getValue();
+			resultCode = QuestionEnum.DELETE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionDelete : " + resultCode);
 			
 		} catch (Exception e) {
+			resultCode = QuestionEnum.DELETE_FAIL.getValue();
+			LOG.error("[QUESTION] questionDelete : " + resultCode);		
 			
-			resultCode = QuestionEnum.RESULT_FAIL.getValue();
-			LOG.error("[QUESTION] questionDelete : " + resultCode);		}
+		}
 		
 		return resultCode;
 		
@@ -141,17 +139,31 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	 * 페이징 처리한 쇼핑몰 문의게시판 목록 /
 	 */
 	@Override
-	public List<ShoppingQuestionVo> questionListStartPage(Model model) {
-		
-		// 한페이지에 5개의 게시글을 보여준다.
-		int endPage = 5;
-		int startPage = 1;
-		
+	public List<ShoppingQuestionVo> questionListStartPage(HttpServletRequest req, Model model) {
 		PagingVo pagingVo = new PagingVo();
-		pagingVo.setEndPage(endPage);
-		pagingVo.setStartPage(startPage);
+		int nowPageNumber = 1;
 		
-		List<ShoppingQuestionVo> questionListPaging = shppingQuestionDao.questionListStartPage(pagingVo);
+		if(req.getParameter("pageNumber") != null) {
+			int endPage = Integer.parseInt(req.getParameter("pageNumber")) * 5;
+			int startPage = endPage - 4;
+			
+			pagingVo.setEndPage(endPage);
+			pagingVo.setStartPage(startPage);
+			
+			nowPageNumber = Integer.parseInt(req.getParameter("pageNumber"));
+			
+		}
+		
+		List<ShoppingQuestionVo> questionListPaging = null;
+		String resultCode = "";
+		
+		try {
+			questionListPaging = shppingQuestionDao.questionListStartPage(pagingVo);
+			LOG.info("[QUESTION] questionListStartPage : " + resultCode);
+			
+		} catch (Exception e) {
+			LOG.error("[QUESTION] questionListStartPage : " + resultCode);	
+		}
 		
 		// 전체 게시글 수를 가져오는 Dao
 		int qeustionTotalCount = shppingQuestionDao.qeustionTotalCount();
@@ -168,47 +180,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		}
 		
 		model.addAttribute("pageNumber", pageNumber);
-		model.addAttribute("nowPageNumber", 1);
-		
-		return questionListPaging;
-	}
-
-	/**
-	 * 페이지 번호를 눌렀을 때, 해당 페이지의 해당 게시물을 보여주기 위해 사용하는 메서드
-	 */
-	@Override
-	public List<ShoppingQuestionVo> pageMove(HttpServletRequest req, Model model) {
-		
-		model.addAttribute("nowPageNumber", req.getParameter("pageNumber"));
-		
-		// 현재 페이지 * 5 = 현재 페이지의 마지막 게시글 번호
-		// 시작 게시글 = 마지막 게시글 - 4
-		int endPage = Integer.parseInt(req.getParameter("pageNumber")) * 5;
-		int startPage = endPage - 4;
-		
-		PagingVo pagingVo = new PagingVo();
-		pagingVo.setEndPage(endPage);
-		pagingVo.setStartPage(startPage);
-		
-		List<ShoppingQuestionVo> questionListPaging = shppingQuestionDao.questionListStartPage(pagingVo);
-		
-		int questionTotalCount = shppingQuestionDao.qeustionTotalCount();
-		int pageNumber = questionTotalCount % 5;
-		
-		if(pageNumber > 0) {
-			pageNumber = (questionTotalCount / 5) + 1;
-		}else {
-			pageNumber = questionTotalCount / 5;
-		}
-		
-		model.addAttribute("pageNumber", pageNumber);
-		
-		List<Integer> questionNumber = new ArrayList<Integer>();
-		
-		for(int i=startPage; i > endPage; i++) {
-			questionNumber.add(i);
-		}
-		model.addAttribute("questionNumber", questionNumber);
+		model.addAttribute("nowPageNumber", nowPageNumber);
 		
 		return questionListPaging;
 	}

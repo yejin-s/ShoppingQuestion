@@ -1,6 +1,9 @@
 package com.yejin.spring.vo;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+
+import com.yejin.spring.sha256.Sha256;
 
 /**
  * @author 설예진
@@ -37,7 +40,19 @@ public class ShoppingUserVo {
 	}
 
 	public String getUserPassword() {
-		return userPassword;
+		
+		Sha256 sha256 = new Sha256();
+		String encryptPassword = null;
+		
+		try {
+			// Sha256 객체를 만들어 입력한 비밀번호를 암호화 한다.
+			encryptPassword = sha256.encrypt(userPassword);
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return encryptPassword;
 	}
 
 	public void setUserPassword(String userPassword) {

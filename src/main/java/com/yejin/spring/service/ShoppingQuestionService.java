@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.yejin.spring.paging.Criteria;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
 /**
@@ -49,7 +48,11 @@ public interface ShoppingQuestionService {
 	 */
 	public String questionDelete(ShoppingQuestionVo shoppingQuestionVo);
 	
-	public List<ShoppingQuestionVo> questionListStartPage(Model model);
+	/**
+	 * 페이징 처리한 쇼핑몰 문의 게시판 
+	 * @param model
+	 * @return List<ShoppingQuestionVo>
+	 */
+	public List<ShoppingQuestionVo> questionListStartPage(HttpServletRequest req, Model model);
 	
-	public List<ShoppingQuestionVo> pageMove(HttpServletRequest req, Model model);
 }

@@ -50,7 +50,7 @@ function goUserLogin(){
 		success : function(resultLoginCheck){
 			if(resultLoginCheck == "Y"){
 				alert("로그인 성공하셨습니다.")
-				location.href="/spring/shopping/questionList";
+				location.href="/spring/shopping/questionListPaging";
 			}else{
 				alert("로그인 정보가 잘못되었습니다.")
 			}
@@ -59,6 +59,14 @@ function goUserLogin(){
 			alert("LOGIN ERROR")
 		}
 	});
+}
+
+function goLoginPageJoinCheck(resultCode){
+	if(resultCode == "0004"){
+		alert("회원가입 성공");
+	}else if(resultCode == "9994"){
+		alert("회원가입 실패");
+	}
 }
 
 

@@ -30,15 +30,27 @@
 	</insert>
 	
 	<select id="questionDetail" parameterType="int" resultType="com.yejin.spring.vo.ShoppingQuestionVo">
-		SELECT QUESTION_NUMBER
+		SELECT RN as questionNumber
 			    , QUESTION_USER
 			    , QUESTION_TITLE
 			    , QUESTION_CONTENT
 			    , QUESTION_REGDATE
 			    , QUESTION_MODIFY_REGDATE
 			    , QUESTION_DELETE_CHECK
-		FROM SHOPPING_QUESTION_BOARD
-		WHERE QUESTION_NUMBER = #{questionNumber}
+		FROM (
+			SELECT ROWNUM RN
+		    	, QUESTION_NUMBER 
+		        , QUESTION_USER
+		        , QUESTION_TITLE
+		        , QUESTION_CONTENT
+		        , QUESTION_REGDATE
+		        , QUESTION_MODIFY_REGDATE
+		        , QUESTION_DELETE_CHECK
+		    FROM SHOPPING_QUESTION_BOARD
+		    WHERE QUESTION_DELETE_CHECK = 'N'
+		    ORDER BY QUESTION_NUMBER ASC
+		)
+		WHERE RN = #{questionNumber}
 	</select>
 	
 	<update id="questionUpdate" parameterType="com.yejin.spring.vo.ShoppingQuestionVo">

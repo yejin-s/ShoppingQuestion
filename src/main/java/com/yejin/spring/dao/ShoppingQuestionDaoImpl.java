@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.yejin.spring.paging.Criteria;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -75,6 +74,9 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 		
 	}
 
+	/**
+	 * 전체 게시글의 수 가져오기
+	 */
 	@Override
 	public int qeustionTotalCount() {
 		
@@ -82,6 +84,9 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 		return qeustionTotalCount;
 	}
 	
+	/**
+	 * 페이징 처리한 쇼핑몰 문의 게시판 
+	 */
 	@Override
 	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo) {
 		
