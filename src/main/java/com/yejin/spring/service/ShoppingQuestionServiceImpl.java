@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingQuestionDao;
-import com.yejin.spring.util.QuestionEnum;
+import com.yejin.spring.util.ResultEnum;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -39,12 +37,12 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		try {
 			shppingQuestionDao.questionWriteEnrollment(shoppingQuestionVo);
-			resultCode = QuestionEnum.WRITE_SUCCESS.getValue();
+			resultCode = ResultEnum.WRITE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionWriteEnrollment : " + resultCode);
 			
 		} catch (Exception e) {
 			
-			resultCode = QuestionEnum.WRITE_FAIL.getValue();
+			resultCode = ResultEnum.WRITE_FAIL.getValue();
 			LOG.error("[QUESTION] questionWriteEnrollment : " + resultCode);
 		}
 		
@@ -79,12 +77,12 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		String resultCode = "";
 		try {
 			shppingQuestionDao.questionUpdate(shoppingQuestionVo);
-			resultCode = QuestionEnum.UPDATE_SUCCESS.getValue();
+			resultCode = ResultEnum.UPDATE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionUpdate : " + resultCode);
 			
 		} catch (Exception e) {
 			
-			resultCode = QuestionEnum.UPDATE_FAIL.getValue();
+			resultCode = ResultEnum.UPDATE_FAIL.getValue();
 			LOG.error("[QUESTION] questionUpdate : " + resultCode);		}
 		
 		return resultCode;
@@ -102,11 +100,11 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		try {
 			shppingQuestionDao.questionDelete(questionNumber);
-			resultCode = QuestionEnum.DELETE_SUCCESS.getValue();
+			resultCode = ResultEnum.DELETE_SUCCESS.getValue();
 			LOG.info("[QUESTION] questionDelete : " + resultCode);
 			
 		} catch (Exception e) {
-			resultCode = QuestionEnum.DELETE_FAIL.getValue();
+			resultCode = ResultEnum.DELETE_FAIL.getValue();
 			LOG.error("[QUESTION] questionDelete : " + resultCode);		
 			
 		}
@@ -119,7 +117,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	 * 페이징 처리한 쇼핑몰 문의게시판 목록 /
 	 */
 	@Override
-	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo, Model model) {
+	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model) {
 		int nowPageNumber = 1;
 		
 		if(pagingVo.getPageNumber() != 0) {
@@ -137,7 +135,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		String resultCode = "";
 		
 		try {
-			questionListPaging = shppingQuestionDao.questionListStartPage(pagingVo);
+			questionListPaging = shppingQuestionDao.questionListPaging(pagingVo);
 			LOG.info("[QUESTION] questionListStartPage : " + resultCode);
 			
 		} catch (Exception e) {

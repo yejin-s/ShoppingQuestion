@@ -7,7 +7,7 @@ package com.yejin.spring.util;
  * 수정 성공 : 0003, 수정 실패 : 9993 / 
  * 가입 성공 : 0004, 가입 실패 : 9994
  */
-public enum QuestionEnum {
+public enum ResultEnum {
 
 	WRITE_SUCCESS("0001")
 	, WRITE_FAIL("9991")
@@ -20,7 +20,7 @@ public enum QuestionEnum {
 
 	private final String value;
 
-	private QuestionEnum(String value) {
+	private ResultEnum(String value) {
 		this.value = value;
 	}
 

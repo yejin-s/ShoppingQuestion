@@ -52,7 +52,7 @@
 	</filter-mapping>
 	<!-- 한글설정 END -->
 	
-	<!-- session 시간 설정 -->
+	<!-- session 시간 설정 : 30분 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

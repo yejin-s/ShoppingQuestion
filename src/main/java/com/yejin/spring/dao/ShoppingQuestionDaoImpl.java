@@ -77,7 +77,7 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	 * 페이징 처리한 쇼핑몰 문의 게시판 
 	 */
 	@Override
-	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo) {
+	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo) {
 		
 		List<ShoppingQuestionVo> questionListPaging = sqlSession.selectList("questionListPaging", pagingVo);
 		

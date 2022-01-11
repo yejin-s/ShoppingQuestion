@@ -48,5 +48,5 @@ public interface ShoppingQuestionDao {
 	 * @param pagingVo
 	 * @return List<ShoppingQuestionVo>
 	 */
-	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo);
+	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo);
 }

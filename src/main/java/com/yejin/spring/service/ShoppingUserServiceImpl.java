@@ -1,7 +1,5 @@
 package com.yejin.spring.service;
 
-import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,8 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingUserDao;
-import com.yejin.spring.sha256.Sha256;
-import com.yejin.spring.util.QuestionEnum;
+import com.yejin.spring.util.ResultEnum;
 import com.yejin.spring.vo.ShoppingUserVo;
 
 /**
@@ -58,11 +55,11 @@ public class ShoppingUserServiceImpl implements ShoppingUserService{
 		
 		try {
 			shoppingUserDao.userJoin(shoppingUserVo);
-			resultCode = QuestionEnum.JOIN_SUCCESS.getValue();
+			resultCode = ResultEnum.JOIN_SUCCESS.getValue();
 			LOG.info("[USER] userJoin : " +  resultCode);
 			
 		} catch (Exception e) {
-			resultCode = QuestionEnum.JOIN_FAIL.getValue();
+			resultCode = ResultEnum.JOIN_FAIL.getValue();
 			LOG.error("[USER] userJoin : " +  resultCode);
 		}
 		

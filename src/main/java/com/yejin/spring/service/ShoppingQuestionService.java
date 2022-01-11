@@ -47,6 +47,6 @@ public interface ShoppingQuestionService {
 	 * @param model
 	 * @return List<ShoppingQuestionVo>
 	 */
-	public List<ShoppingQuestionVo> questionListStartPage(PagingVo pagingVo, Model model);
+	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model);
 	
 }

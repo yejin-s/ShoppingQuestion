@@ -54,10 +54,6 @@ function goUpdateeResultCodeAlert(resultCode){
 
 function goPage(pageNumber){
 	
-	/*document.shoppingQuestionForm.pageNumber.value = pageNumber;
-	document.shoppingQuestionForm.action="/spring/shopping/questionListPaging";
-	document.shoppingQuestionForm.submit();*/
-	alert(pageNumber);
 	document.shoppingQuestionForm.pageNumber.value = pageNumber;
 	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
 	document.shoppingQuestionForm.submit();

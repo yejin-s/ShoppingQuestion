@@ -42,8 +42,10 @@ public class ShoppingQuestionController {
 	}
 
 	/**
-	 * 작성한 글 등록하는 컨트롤러 / 작성한 글 정보들을 가지고 DB에 insert 후 글 목록 컨트롤러로 이동 / 작성 성공하면 alert창을
-	 * 띄우기 위해 type을 보내준다 / resultCode : 예외처리 코드 /
+	 * 작성한 글 등록하는 컨트롤러 / 
+	 * 작성한 글 정보들을 가지고 DB에 insert 후 글 목록 컨트롤러로 이동 / 
+	 * 작성 성공하면 alert창을 띄우기 위해 type을 보내준다 / 
+	 * resultCode : 예외처리 코드 /
 	 * 
 	 * @param shoppingQuestionVo
 	 * @return boardList
@@ -60,9 +62,8 @@ public class ShoppingQuestionController {
 	}
 
 	/**
-	 * 글 제목 눌렀을 때, 상세정보 보여주는 컨트롤러 / 글 번호로 DB 접근 후 해당 정보를 가지고
-	 * shoppingQuestionDetail.jsp(상세 페이지)로 이동 /
-	 * 
+	 * 글 제목 눌렀을 때, 상세정보 보여주는 컨트롤러 / 
+	 * 글 번호로 DB 접근 후 해당 정보를 가지고 shoppingQuestionDetail.jsp(상세 페이지)로 이동 /
 	 * @param shoppingQuestionVo
 	 * @param model
 	 * @return shoppingQuestionDetail
@@ -86,8 +87,8 @@ public class ShoppingQuestionController {
 	}
 
 	/**
-	 * 글 수정하는 페이지로 가는 컨트롤러 / 수정할 글의 정보를 가지고 shoppingQuestionUpdatePage.jsp(수정 페이지)로
-	 * 이동 /
+	 * 글 수정하는 페이지로 가는 컨트롤러 / 
+	 * 수정할 글의 정보를 가지고 shoppingQuestionUpdatePage.jsp(수정 페이지)로 이동 /
 	 * 
 	 * @param shoppingQuestionVo
 	 * @param model
@@ -145,8 +146,10 @@ public class ShoppingQuestionController {
 	}
 
 	/**
-	 * 글 삭제하는 컨트롤러 / 글 번호를 가지고 삭제 후 글 목록 컨트롤러로 이동 / 글 삭제는 N에서 Y로 변경 / 삭제 성공하면
-	 * alert창을 띄우기 위해 type을 보내준다 / resultCode : 예외처리 코드 /
+	 * 글 삭제하는 컨트롤러 / 
+	 * 글 번호를 가지고 삭제 후 글 목록 컨트롤러로 이동 / 
+	 * 글 삭제는 N에서 Y로 변경 / 
+	 * 삭제 성공하면 resultCode : 예외처리 코드 /
 	 * 
 	 * @param shoppingQuestionVo
 	 * @return boardList
@@ -162,8 +165,9 @@ public class ShoppingQuestionController {
 	}
 
 	/**
-	 * 페이징 처리한 쇼핑몰 문의 게시판 / 처음 게시판으로 들어갈 땐, alert창으로 알려줄 정보가 없기 때문에 resultCode와
-	 * type에 빈값을 넣어준다 / questionListPaging : mapper에서 페이징 처리한 정보 /
+	 * 페이징 처리한 쇼핑몰 문의 게시판 / 
+	 * 처음 게시판으로 들어갈 땐, alert창으로 알려줄 정보가 없기 때문에 resultCode를 보내준다.
+	 * questionListPaging : mapper에서 페이징 처리한 정보 /
 	 * 
 	 * @param model
 	 * @return
@@ -171,7 +175,7 @@ public class ShoppingQuestionController {
 	@RequestMapping(value = "/shopping/questionListPaging", method = RequestMethod.POST)
 	public String questionListPaging(PagingVo pagingVo, Model model) {
 
-		List<ShoppingQuestionVo> questionListPaging = shoppingQuestionService.questionListStartPage(pagingVo, model);
+		List<ShoppingQuestionVo> questionListPaging = shoppingQuestionService.questionListPaging(pagingVo, model);
 
 		model.addAttribute("resultCode", resultCode);
 		model.addAttribute("questionListPaging", questionListPaging);
