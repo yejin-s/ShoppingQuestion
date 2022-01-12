@@ -59,10 +59,10 @@
 	</table>
 
 	<c:choose>
-		<c:when test="${nowPageNumber < 6 && pageNumber > 5}">
+		<c:when test="${nowPageNumber < 6 && pageNumber > pageTotalQuestionNumber}">
 			<table>
 				<tr>
-					<c:forEach var="pageNumber" begin="1" end="5">
+					<c:forEach var="pageNumber" begin="1" end="${pageTotalQuestionNumber }">
 						<td><input type="button" value="${pageNumber}"
 							onclick="javascript:goPage(${pageNumber})"></td>
 					</c:forEach>
@@ -74,20 +74,20 @@
 		<c:when test="${nowPageNumber < 6}">
 			<table>
 				<tr>
-					<c:forEach var="pageNumber" begin="1" end="${nowPageNumber}">
+					<c:forEach var="pageNumber" begin="1" end="${pageNumber}">
 						<td><input type="button" value="${pageNumber}"
 							onclick="javascript:goPage(${pageNumber})"></td>
 					</c:forEach>
 				</tr>
 			</table>
 		</c:when>
-		<c:when test="${nowPageNumber > 5}">
+		<c:when test="${nowPageNumber > pageTotalQuestionNumber}">
 			<table>
 				<tr>
 					<td><input type="button" value="◀"
-						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % 5) - 1)) - 1})"></td>
+						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) - 1})"></td>
 					<c:forEach var="pageNumber"
-						begin="${nowPageNumber - ((nowPageNumber % 5) - 1)}"
+						begin="${nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)}"
 						end="${pageNumber}">
 						<td><input type="button" value="${pageNumber}"
 							onclick="javascript:goPage(${pageNumber})"></td>
@@ -96,19 +96,19 @@
 			</table>
 		</c:when>
 		<c:when
-			test="${nowPageNumber > 5 && (pageNumber / 5) > 1 && (pageNumber % 5) > 0}">
+			test="${nowPageNumber > pageTotalQuestionNumber && (pageNumber / pageTotalQuestionNumber) > 1 && (pageNumber % pageTotalQuestionNumber) > 0}">
 			<table>
 				<tr>
 					<td><input type="button" value="◀"
-						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % 5) - 1)) + 1})"></td>
+						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 1})"></td>
 					<c:forEach var="pageNumber"
-						begin="${nowPageNumber - ((nowPageNumber % 5) - 1)}"
-						end="${(5 + ((nowPageNumber % 5) - 1)) + 4}">
+						begin="${nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)}"
+						end="${(pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 4}">
 						<td><input type="button" value="${pageNumber}"
 							onclick="javascript:goPage(${pageNumber})"></td>
 					</c:forEach>
 					<td><input type="button" value="▶"
-						onclick="javascript:goPage(${((5 + ((nowPageNumber % 5) - 1)) + 4) + 1})"></td>
+						onclick="javascript:goPage(${((pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 4) + 1})"></td>
 				</tr>
 			</table>
 		</c:when>

@@ -2,8 +2,18 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
   <configuration>
+  
+	<!-- 카멜기법으로 자동화 -->
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
+	
+	<!-- mapper resultType, parameterType 경로 짧게 -->
+	<typeAliases>
+		<typeAlias alias="ShoppingQuestionVo" type="com.yejin.spring.vo.ShoppingQuestionVo"/>
+		<typeAlias alias="PagingVo" type="com.yejin.spring.vo.PagingVo"/>
+		<typeAlias alias="ShoppingUserVo" type="com.yejin.spring.vo.ShoppingUserVo"/>
+	</typeAliases>
   </configuration>

@@ -9,7 +9,7 @@
 		WHERE USER_ID = #{userId}
 	</select>
 	
-	<insert id="userJoin" parameterType="com.yejin.spring.vo.ShoppingUserVo">
+	<insert id="userJoin" parameterType="ShoppingUserVo">
 		INSERT INTO SHOPPING_JOIN_USER(
 			USER_ID
 			, USER_PASSWORD
@@ -22,7 +22,7 @@
 			, SYSDATE)
 	</insert>
 	
-	<select id="loginUserInfomation" parameterType="com.yejin.spring.vo.ShoppingUserVo" resultType="com.yejin.spring.vo.ShoppingUserVo">
+	<select id="loginUserInfomation" parameterType="ShoppingUserVo" resultType="ShoppingUserVo">
 		SELECT USER_ID
 			, USER_PASSWORD
 			, USER_NAME

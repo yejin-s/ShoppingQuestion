@@ -2,26 +2,28 @@ package com.yejin.spring.vo;
 
 public class PagingVo {
 	
-	private int startPage = 1;
+	private int startQuestionNumber = 1;
 	
-	private int endPage = 5;
+	private int endQuestionNumber = 5;
 	
 	private int pageNumber = 0;
+	
+	private int pageTotalQuestionNumber = 5;
 
-	public int getStartPage() {
-		return startPage;
+	public int getStartQuestionNumber() {
+		return startQuestionNumber;
 	}
 
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
+	public void setStartQuestionNumber(int startQuestionNumber) {
+		this.startQuestionNumber = startQuestionNumber;
 	}
 
-	public int getEndPage() {
-		return endPage;
+	public int getEndQuestionNumber() {
+		return endQuestionNumber;
 	}
 
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
+	public void setEndQuestionNumber(int endQuestionNumber) {
+		this.endQuestionNumber = endQuestionNumber;
 	}
 
 	public int getPageNumber() {
@@ -31,7 +33,18 @@ public class PagingVo {
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
 	}
-	
+
+	public int getPageTotalQuestionNumber() {
+		return pageTotalQuestionNumber;
+	}
+
+	public void setPageTotalQuestionNumber(int pageTotalQuestionNumber) {
+		this.pageTotalQuestionNumber = pageTotalQuestionNumber;
+	}
+
+
+
+
 	
 	
 }

@@ -120,12 +120,16 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model) {
 		int nowPageNumber = 1;
 		
+		// 한 페이지당 보여줄 게시글 수
+		int pageTotalQuestionNumber = pagingVo.getPageTotalQuestionNumber();
+		model.addAttribute("pageTotalQuestionNumber", pageTotalQuestionNumber);
+		
 		if(pagingVo.getPageNumber() != 0) {
-			int endPage = pagingVo.getPageNumber() * 5;
-			int startPage = endPage - 4;
+			int endQuestionNumber = pagingVo.getPageNumber() * 5;
+			int startQuestionNumber = endQuestionNumber - 4;
 			
-			pagingVo.setEndPage(endPage);
-			pagingVo.setStartPage(startPage);
+			pagingVo.setEndQuestionNumber(endQuestionNumber);
+			pagingVo.setStartQuestionNumber(startQuestionNumber);
 			
 			nowPageNumber = pagingVo.getPageNumber();
 			

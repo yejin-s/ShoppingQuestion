@@ -51,14 +51,16 @@ public class ShoppingQuestionController {
 	 * @return boardList
 	 */
 	@RequestMapping(value = "/shopping/questionWriteEnrollment", method = RequestMethod.POST)
-	public String questionWriteEnrollment(ShoppingQuestionVo shoppingQuestionVo) {
+	public String questionWriteEnrollment(ShoppingQuestionVo shoppingQuestionVo, Model model) {
 
 		LOG.info("[QUESTION] questionWriteEnrollment user: " + shoppingQuestionVo.getQuestionUser() + ", title: "
 				+ shoppingQuestionVo.getQuestionTitle() + ", content:" + shoppingQuestionVo.getQuestionContent());
 
 		resultCode = shoppingQuestionService.questionWriteEnrollment(shoppingQuestionVo);
 		
-		return "redirect:/shopping/questionListPaging";
+		PagingVo pagingVo = new PagingVo();
+
+		return questionListPaging(pagingVo, model);
 	}
 
 	/**
@@ -152,6 +154,7 @@ public class ShoppingQuestionController {
 	 * 삭제 성공하면 resultCode : 예외처리 코드 /
 	 * 
 	 * @param shoppingQuestionVo
+	 * @return 
 	 * @return boardList
 	 */
 	@RequestMapping(value = "/shopping/questionDelete", method = RequestMethod.POST)
@@ -160,8 +163,11 @@ public class ShoppingQuestionController {
 		LOG.info("[QUESTION] questionDelete questionNumber: " + shoppingQuestionVo.getQuestionNumber());
 
 		resultCode = shoppingQuestionService.questionDelete(shoppingQuestionVo);
+		
+		PagingVo pagingVo = new PagingVo();
 
-		return "redirect:/shopping/questionListPaging";
+		// return "redirect:/shopping/questionListPaging";
+		return questionListPaging(pagingVo, model);
 	}
 
 	/**
