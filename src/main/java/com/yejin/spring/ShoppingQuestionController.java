@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yejin.spring.service.ShoppingQuestionService;
@@ -181,6 +184,8 @@ public class ShoppingQuestionController {
 	@RequestMapping(value = "/shopping/questionListPaging", method = RequestMethod.POST)
 	public String questionListPaging(PagingVo pagingVo, Model model) {
 
+		LOG.info("[QUESTION] questionListPaging Controller" );
+		
 		List<ShoppingQuestionVo> questionListPaging = shoppingQuestionService.questionListPaging(pagingVo, model);
 
 		model.addAttribute("resultCode", resultCode);
@@ -188,6 +193,35 @@ public class ShoppingQuestionController {
 		
 		resultCode = "";
 		return "shoppingQeustionListPaging";
+	}
+	
+	
+	// JSON
+	/**
+	 * JSON으로 목록 보여주기 위해 값 가지러 가는 컨트롤러
+	 * @param pagingVo
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/shopping/questionListJson", method = RequestMethod.POST)
+	public String questionListJson(PagingVo pagingVo, Model model) {
+
+		LOG.info("[QUESTION] questionListJson ");
+		
+		String json = shoppingQuestionService.questionListJson();
+
+		return json;
+	}
+	
+	// JSON
+	/**
+	 * JSON으로 목록 보여주는 페이지
+	 * @return
+	 */
+	@RequestMapping(value = "/shopping/go", method = RequestMethod.GET)
+	public String go() {
+		return "shoppingQeustionListJson";
 	}
 
 }

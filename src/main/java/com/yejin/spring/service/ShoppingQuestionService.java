@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.ui.Model;
 
 import com.yejin.spring.vo.PagingVo;
@@ -48,5 +50,13 @@ public interface ShoppingQuestionService {
 	 * @return List<ShoppingQuestionVo>
 	 */
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model);
+	
+	
+	
+	/**
+	 * Json 값 가져오기
+	 * @return
+	 */
+	public String questionListJson();
 	
 }

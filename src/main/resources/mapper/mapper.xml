@@ -56,15 +56,21 @@
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 	
-	<select id="qeustionTotalCount" resultType="int">
+	<select id="qeustionTotalCount" resultType="int" parameterType="PagingVo">
 		SELECT COUNT(*)
 		FROM SHOPPING_QUESTION_BOARD
 		WHERE QUESTION_DELETE_CHECK = 'N'
+		<if test="searchKeyword != null and !searchKeyword.equals('')">
+			AND ${searchSelect} LIKE '%'||#{searchKeyword}||'%' 
+		</if>
+		<if test="startDate != null and !startDate.equals('')">
+			AND QUESTION_REGDATE BETWEEN #{startDate} AND #{endDate}
+		</if>
 	</select>
 	
 	<select id="questionListPaging" parameterType="PagingVo" resultType="ShoppingQuestionVo">
-		<![CDATA[
-			SELECT TO_NUMBER(#{startQuestionNumber} -1 + rownum) AS rowNumber
+		
+		SELECT TO_NUMBER(#{startQuestionNumber} -1 + rownum) AS rowNumber
 				, QUESTION_NUMBER 
 				, QUESTION_USER
         		, QUESTION_TITLE
@@ -91,10 +97,28 @@
 				        	, QUESTION_DELETE_CHECK
 				    	FROM SHOPPING_QUESTION_BOARD
 				    	WHERE QUESTION_DELETE_CHECK = 'N'
+				    	<if test="searchKeyword != null and !searchKeyword.equals('')">
+				    		AND ${searchSelect} LIKE '%'||#{searchKeyword}||'%' 
+				    	</if>
+				    	<if test="startDate != null and !startDate.equals('')">
+					    	AND QUESTION_REGDATE BETWEEN #{startDate} AND #{endDate}
+				    	</if>
 				    	ORDER BY QUESTION_NUMBER DESC
 		            		)
 			)
-		WHERE RN >= #{startQuestionNumber} and RN <= #{endQuestionNumber}
-		]]>
+		WHERE RN BETWEEN #{startQuestionNumber} and #{endQuestionNumber}
+	</select>
+	
+	<select id="questionListJson" resultType="ShoppingQuestionVo">
+		SELECT QUESTION_NUMBER
+			, QUESTION_USER
+			, QUESTION_TITLE
+			, QUESTION_CONTENT
+			, QUESTION_REGDATE
+        	, NVL(QUESTION_MODIFY_REGDATE, QUESTION_REGDATE) as questionModityRegdate
+			, QUESTION_DELETE_CHECK
+		FROM SHOPPING_QUESTION_BOARD
+		WHERE QUESTION_DELETE_CHECK = 'N'
+		ORDER BY QUESTION_NUMBER ASC
 	</select>
 </mapper>

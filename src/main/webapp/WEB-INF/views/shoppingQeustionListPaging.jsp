@@ -11,8 +11,57 @@
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
 <body
-	onload="javascript:goWriteResultCodeAlert('${resultCode}','${type}')">
+	onload="javascript:goWriteResultCodeAlert('${resultCode}')">
 
+	<select name="pageTotalQuestionNumber" id="pageTotalQuestionNumber"
+		onchange="javascript:goPage(1, '${pageTotalQuestionNumber}', 'select')">
+		<option value="페이지">페이지</option>
+		<option value="5">5</option>
+		<option value="10">10</option>
+		<option value="15">15</option>
+		<option value="20">20</option>
+	</select>
+
+	<select name="searchSelect" id="searchSelect">
+		<option value="작성자">작성자</option>
+		<option value="제목">제목</option>
+		<option value="내용">내용</option>
+	</select>
+
+	<c:choose>
+		<c:when test="${searchPage == 1 }">
+			<input type="text" name="searchKeyword" id="searchKeyword" value="${searchKeyword }">
+			<input type="button" value="검색" id="searchButton" 
+				onclick="javascript:goPage(1, '${pageTotalQuestionNumber}', 'page')">	
+		</c:when>
+		<c:otherwise>
+			<input type="text" name="searchKeyword" id="searchKeyword">
+			<input type="button" value="검색" id="searchButton" 
+				onclick="javascript:goPage(1, '${pageTotalQuestionNumber}', 'page')">
+		</c:otherwise>
+	</c:choose>
+
+	<br>
+	<br>
+		
+	<c:choose>
+		<c:when test="${dateSearchPage == 1 }">
+			<input type="date" id="startDate" name="startDate" value="${startDate }">
+			~
+			<input type="date" id="endDate" name="endDate" value="${endDate }">
+			<input type="button" value="검색" id="searchButton" 
+				onclick="javascript:goPage(1, '${pageTotalQuestionNumber}', 'page')">
+		</c:when>
+		<c:otherwise>
+			<input type="date" id="startDate" name="startDate">
+			~
+			<input type="date" id="endDate" name="endDate">
+			<input type="button" value="검색" id="searchButton" 
+				onclick="javascript:goPage(1, '${pageTotalQuestionNumber}', 'reset')">
+		</c:otherwise>
+	</c:choose>
+	<br>
+	<br>
 	<table border="1px">
 		<tr>
 			<td>번호</td>
@@ -59,24 +108,26 @@
 	</table>
 
 	<c:choose>
-		<c:when test="${nowPageNumber < 6 && pageNumber > pageTotalQuestionNumber}">
+		<c:when
+			test="${nowPageNumber < (pageTotalQuestionNumber + 1) && pageNumber > pageTotalQuestionNumber}">
 			<table>
 				<tr>
-					<c:forEach var="pageNumber" begin="1" end="${pageTotalQuestionNumber }">
+					<c:forEach var="pageNumber" begin="1"
+						end="${pageTotalQuestionNumber }">
 						<td><input type="button" value="${pageNumber}"
-							onclick="javascript:goPage(${pageNumber})"></td>
+							onclick="javascript:goPage('${pageNumber}', '${pageTotalQuestionNumber}', 'page')"></td>
 					</c:forEach>
 					<td><input type="button" value="▶"
-						onclick="javascript:goPage(6)"></td>
+						onclick="javascript:goPage('${pageTotalQuestionNumber + 1}', '${pageTotalQuestionNumber}', 'page')"></td>
 				</tr>
 			</table>
 		</c:when>
-		<c:when test="${nowPageNumber < 6}">
+		<c:when test="${nowPageNumber < pageTotalQuestionNumber + 1}">
 			<table>
 				<tr>
 					<c:forEach var="pageNumber" begin="1" end="${pageNumber}">
 						<td><input type="button" value="${pageNumber}"
-							onclick="javascript:goPage(${pageNumber})"></td>
+							onclick="javascript:goPage('${pageNumber}', '${pageTotalQuestionNumber}', 'page')"></td>
 					</c:forEach>
 				</tr>
 			</table>
@@ -85,12 +136,12 @@
 			<table>
 				<tr>
 					<td><input type="button" value="◀"
-						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) - 1})"></td>
+						onclick="javascript:goPage('${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) - 1}', '${pageTotalQuestionNumber}', 'page')"></td>
 					<c:forEach var="pageNumber"
 						begin="${nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)}"
 						end="${pageNumber}">
 						<td><input type="button" value="${pageNumber}"
-							onclick="javascript:goPage(${pageNumber})"></td>
+							onclick="javascript:goPage('${pageNumber}', '${pageTotalQuestionNumber}')"></td>
 					</c:forEach>
 				</tr>
 			</table>
@@ -100,15 +151,15 @@
 			<table>
 				<tr>
 					<td><input type="button" value="◀"
-						onclick="javascript:goPage(${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 1})"></td>
+						onclick="javascript:goPage('${(nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 1}', '${pageTotalQuestionNumber}')"></td>
 					<c:forEach var="pageNumber"
 						begin="${nowPageNumber - ((nowPageNumber % pageTotalQuestionNumber) - 1)}"
-						end="${(pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 4}">
+						end="${(pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + (pageTotalQuestionNumber -1)}">
 						<td><input type="button" value="${pageNumber}"
-							onclick="javascript:goPage(${pageNumber})"></td>
+							onclick="javascript:goPage('${pageNumber}', '${pageTotalQuestionNumber}', 'page')"></td>
 					</c:forEach>
 					<td><input type="button" value="▶"
-						onclick="javascript:goPage(${((pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + 4) + 1})"></td>
+						onclick="javascript:goPage('${((pageTotalQuestionNumber + ((nowPageNumber % pageTotalQuestionNumber) - 1)) + (pageTotalQuestionNumber -1)) + 1}', '${pageTotalQuestionNumber}', 'page')"></td>
 				</tr>
 			</table>
 		</c:when>
@@ -120,9 +171,20 @@
 				onclick="javascript:goShoppingQuestionWrite()"></td>
 		</tr>
 	</table>
+	<table>
+		<tr>
+			<td><input type="reset" value="검색 초기화"
+				onclick="javascript:goShoppingQuestionListPaging(1, 5)"></td>
+		</tr>
+	</table>
 	<form name="shoppingQuestionForm" method="post">
-		<input type="hidden" id="questionNumber" name="questionNumber" />
-		<input type="hidden" id="pageNumber" name="pageNumber" />
+		<input type="hidden" id="questionNumber" name="questionNumber" /> 
+		<input type="hidden" id="pageNumber" name="pageNumber" /> 
+		<input type="hidden" id="pageTotalQuestionNumber" name="pageTotalQuestionNumber" />
+		<input type="hidden" id="searchSelect" name="searchSelect" />
+		<input type="hidden" id="searchKeyword" name="searchKeyword" />
+		<input type="hidden" id="startDate" name="startDate" />
+		<input type="hidden" id="endDate" name="endDate" />
 	</form>
 </body>
 </html>

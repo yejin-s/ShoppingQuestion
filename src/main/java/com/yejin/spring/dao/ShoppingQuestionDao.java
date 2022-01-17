@@ -41,7 +41,7 @@ public interface ShoppingQuestionDao {
 	 * 전체 게시글의 수 가져오기
 	 * @return int
 	 */
-	public int qeustionTotalCount();
+	public int qeustionTotalCount(PagingVo pagingVo);
 	
 	/**
 	 * 페이징 처리한 쇼핑몰 문의 게시판 
@@ -49,4 +49,9 @@ public interface ShoppingQuestionDao {
 	 * @return List<ShoppingQuestionVo>
 	 */
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo);
+	
+	/**
+	 * Json 값 가져오기
+	 */
+	public List<ShoppingQuestionVo> questionListJson();
 }

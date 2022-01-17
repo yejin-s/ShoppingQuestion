@@ -12,9 +12,17 @@ function goShoppingQuestionDetail(questionNumber){
 	document.shoppingQuestionForm.submit();
 }
 
-// 글 목록으로 가는 함수
-function goShoppingQuestionList(){
-	location.href="/spring/shopping/questionList";
+// 검색 사용 후 초기화하고 리스트로 돌아오는 코드
+function goShoppingQuestionListPaging(pageNumber, pageTotalQuestionNumber){
+	
+	$("#pageTotalQuestionNumber").val(pageTotalQuestionNumber).remove();
+	$("#searchSelect").val(searchSelect).remove();
+	$("#startDate").val(startDate).remove();
+	$("#endDate").val(endDate).remove();
+	document.shoppingQuestionForm.pageNumber.value = pageNumber;
+	document.shoppingQuestionForm.pageTotalQuestionNumber.value = pageTotalQuestionNumber;
+	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
+	document.shoppingQuestionForm.submit();
 }
 
 // 글 삭제 컨트롤러로 가는 함수
@@ -41,6 +49,7 @@ function goWriteResultCodeAlert(resultCode){
 		alert("삭제 실패");
 		
 	}
+	
 }
 
 function goUpdateeResultCodeAlert(resultCode){
@@ -52,17 +61,66 @@ function goUpdateeResultCodeAlert(resultCode){
 	}
 }
 
-function goPage(pageNumber){
+function goPage(pageNumber, pageTotalQuestionNumber, pageType){
 	
+	// 페이지 이동 버튼눌렀는지, selectbox 버튼 눌렀는지 타입 체크
+	if(pageType == 'select'){
+		pageTotalQuestionNumber = $("#pageTotalQuestionNumber").val();
+	}
+	
+	// 검색기능
+	var searchSelect = $("#searchSelect").val();
+	var searchKeyword = $("#searchKeyword").val();
+	
+	// 날짜
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	
+	$("#pageTotalQuestionNumber").val(pageTotalQuestionNumber).prop("selected", true);
+	$("#searchSelect").val(searchSelect).prop("selected", true);
 	document.shoppingQuestionForm.pageNumber.value = pageNumber;
+	document.shoppingQuestionForm.pageTotalQuestionNumber.value = pageTotalQuestionNumber;
+	document.shoppingQuestionForm.searchSelect.value = searchSelect;
+	document.shoppingQuestionForm.searchKeyword.value = searchKeyword;
+	document.shoppingQuestionForm.startDate.value = startDate;
+	document.shoppingQuestionForm.endDate.value = endDate;
 	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
 	document.shoppingQuestionForm.submit();
-	
 }
 
 
+function goJsonData(){
+	
+	$.ajax({
+		url : "/spring/shopping/questionListJson",
+		method : "post",
+		dataType : "json",
+		success : function(data){
+			
+			var html;
+			
+			for(var i in data){
+				
+				html = html + "<tr>";
+				html = html + "<td>" + data[i].questionNumber + "</td>";
+				html = html + "<td>" + data[i].questionUser + "</td>";
+				html = html + "<td>" + data[i].questionTitle + "</td>";
+				html = html + "<td>" + data[i].questionContent + "</td>";
+				html = html + "<td>" + changeDate(data[i].questionRegdate) + "</td>";
+				html = html + "<td>" + changeDate(data[i].questionModityRegdate) + "</td>";
+				html = html + "</tr>";
+			}
+			$('#jsonTable').append(html);
+		},
+		error : function(){
+			alert("JSON ERROR")
+		}
+	});
+}
 
-
-
-
-
+function changeDate(date){
+	
+	const today = new Date(date);
+	
+	return today.toDateString();
+}

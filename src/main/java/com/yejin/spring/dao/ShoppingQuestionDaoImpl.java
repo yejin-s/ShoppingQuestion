@@ -67,9 +67,9 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	 * 전체 게시글의 수 가져오기
 	 */
 	@Override
-	public int qeustionTotalCount() {
+	public int qeustionTotalCount(PagingVo pagingVo) {
 		
-		int qeustionTotalCount = sqlSession.selectOne("qeustionTotalCount");
+		int qeustionTotalCount = sqlSession.selectOne("qeustionTotalCount", pagingVo);
 		return qeustionTotalCount;
 	}
 	
@@ -78,9 +78,19 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	 */
 	@Override
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo) {
-		
+
 		List<ShoppingQuestionVo> questionListPaging = sqlSession.selectList("questionListPaging", pagingVo);
-		
+ 
 		return questionListPaging;
 	}
+	
+	/**
+	 * Json 값 가져오기
+	 */
+	@Override
+	public List<ShoppingQuestionVo> questionListJson() {
+		List<ShoppingQuestionVo> questionListJson = sqlSession.selectList("questionListJson");
+		return questionListJson;
+	}
+
 }

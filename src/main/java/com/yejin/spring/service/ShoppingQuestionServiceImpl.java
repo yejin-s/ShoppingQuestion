@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingQuestionDao;
 import com.yejin.spring.util.ResultEnum;
@@ -118,15 +123,19 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 	 */
 	@Override
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model) {
+		
 		int nowPageNumber = 1;
 		
 		// 한 페이지당 보여줄 게시글 수
 		int pageTotalQuestionNumber = pagingVo.getPageTotalQuestionNumber();
 		model.addAttribute("pageTotalQuestionNumber", pageTotalQuestionNumber);
 		
+		// 클릭한 페이지 번호
+		// 페이지 번호가 0일때 : 검색해서 들어온 경우
 		if(pagingVo.getPageNumber() != 0) {
-			int endQuestionNumber = pagingVo.getPageNumber() * 5;
-			int startQuestionNumber = endQuestionNumber - 4;
+			LOG.info("/////~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			int endQuestionNumber = pagingVo.getPageNumber() * pageTotalQuestionNumber;
+			int startQuestionNumber = endQuestionNumber - (pageTotalQuestionNumber - 1);
 			
 			pagingVo.setEndQuestionNumber(endQuestionNumber);
 			pagingVo.setStartQuestionNumber(startQuestionNumber);
@@ -136,33 +145,77 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		}
 		
 		List<ShoppingQuestionVo> questionListPaging = null;
+		// 전체 게시글 수
+		int qeustionTotalCount = 0;
 		String resultCode = "";
 		
 		try {
-			questionListPaging = shppingQuestionDao.questionListPaging(pagingVo);
-			LOG.info("[QUESTION] questionListStartPage : " + resultCode);
+			LOG.info("!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		if(pagingVo.getSearchKeyword() == null) {
+				model.addAttribute("searchPage", 0);
+				model.addAttribute("dateSearchPage", 0);
+				
+		}else {
 			
+			if(pagingVo.getSearchSelect().equals("작성자")) {
+				pagingVo.setSearchSelect("QUESTION_USER");
+			}else if(pagingVo.getSearchSelect().equals("제목")) {
+				pagingVo.setSearchSelect("QUESTION_TITLE");
+			}else if(pagingVo.getSearchSelect().equals("내용")) {
+				pagingVo.setSearchSelect("QUESTION_CONTENT");
+			}
+			
+			model.addAttribute("searchPage", 1);
+			model.addAttribute("dateSearchPage", 1);
+			model.addAttribute("searchKeyword", pagingVo.getSearchKeyword());
+			model.addAttribute("startDate", pagingVo.getStartDate());
+			model.addAttribute("endDate", pagingVo.getEndDate());
+		}
+			LOG.info("[QUESTION] questionListStartPage : " + resultCode);
 		} catch (Exception e) {
-			LOG.error("[QUESTION] questionListStartPage : " + resultCode);	
+			LOG.error("[ERROR] questionListStartPage : " + resultCode);	
 		}
 		
+		// 게시글 리스트 가져오기
+		questionListPaging = shppingQuestionDao.questionListPaging(pagingVo);
 		// 전체 게시글 수를 가져오는 Dao
-		int qeustionTotalCount = shppingQuestionDao.qeustionTotalCount();
+		qeustionTotalCount = shppingQuestionDao.qeustionTotalCount(pagingVo);
 		
 		// pageNumber = 전체 게시글을 5로 나누면 나오는 나머지
-		int pageNumber = qeustionTotalCount % 5;
+		int pageNumber = qeustionTotalCount % pageTotalQuestionNumber;
 		
 		// 나머지가 0보다 크면 전체페이지 / 5를 한 뒤 1를 더해준 값으로 교체
 		// 한페이지 당 5개의 게시글을 보여주는데 나머지가 있으면 5로 나누어 떨어지지 않으니 한페이지를 더 추가해준다.
 		if(pageNumber > 0) {
-			pageNumber = (qeustionTotalCount / 5) + 1;
+			pageNumber = (qeustionTotalCount / pageTotalQuestionNumber) + 1;
 		}else {
-			pageNumber = qeustionTotalCount / 5;
+			pageNumber = qeustionTotalCount / pageTotalQuestionNumber;
 		}
 		
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("nowPageNumber", nowPageNumber);
-		
 		return questionListPaging;
+	}
+	
+	/**
+	 * Json 값 가져오기
+	 */
+	@Override
+	public String questionListJson() {
+		
+		List<ShoppingQuestionVo> questionListJson = null;
+		
+		try {
+			questionListJson = shppingQuestionDao.questionListJson();
+			LOG.info("[QUESTION] questionListJson OK : " + questionListJson);
+			
+		} catch (Exception e) {
+			LOG.error("[QUESTION] questionListJson ERROR");	
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(questionListJson);
+		
+		return json;
 	}
 }
