@@ -51,8 +51,6 @@ public interface ShoppingQuestionService {
 	 */
 	public List<ShoppingQuestionVo> questionListPaging(PagingVo pagingVo, Model model);
 	
-	
-	
 	/**
 	 * Json 값 가져오기
 	 * @return

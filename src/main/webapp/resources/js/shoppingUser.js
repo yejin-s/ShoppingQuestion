@@ -1,8 +1,10 @@
+// 회원가입 페이지로 이동
 function goJoinPage(){
 	document.shoppingUserForm.action = "/spring/shopping/joinPage";
 	document.shoppingUserForm.submit();
 }
 
+// 아이디 체크
 function goShoppingJoinIdCheck(){
 
 	var userId = document.shoppingUserJoinForm.userId.value;
@@ -25,11 +27,13 @@ function goShoppingJoinIdCheck(){
 	});
 }
 
+// 회원가입 페이지 작성 후 정보가지고 등록
 function goUserJoin(){
 	document.shoppingUserJoinForm.action = "/spring/shopping/userJoin";
 	document.shoppingUserJoinForm.submit();
 }
 
+// 로그인
 function goUserLogin(){
 	
 	var form = document.shoppingUserForm;
@@ -67,6 +71,7 @@ function goUserLogin(){
 	});
 }
 
+// 페이지 로드될 때
 function goLoginPageJoinCheck(resultCode){
 	if(resultCode == "0004"){
 		alert("회원가입 성공");

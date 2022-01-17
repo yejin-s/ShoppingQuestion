@@ -4,6 +4,7 @@
 
 <mapper namespace="com.yejin.spring.dao.ShoppingQuestionDao">
 
+	<!-- 글 등록 -->
 	<insert id="questionWriteEnrollment" parameterType="ShoppingQuestionVo">
 		INSERT INTO SHOPPING_QUESTION_BOARD(
 			QUESTION_NUMBER
@@ -18,6 +19,7 @@
 			, SYSDATE)
 	</insert>
 	
+	<!-- 상세정보 -->
 	<select id="questionDetail" parameterType="int" resultType="ShoppingQuestionVo">
 		SELECT RN as rowNumber
 				, QUESTION_NUMBER 
@@ -43,6 +45,7 @@
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</select>
 	
+	<!-- 글 수정 -->
 	<update id="questionUpdate" parameterType="ShoppingQuestionVo">
 		UPDATE SHOPPING_QUESTION_BOARD
 		SET QUESTION_TITLE = #{questionTitle}
@@ -50,12 +53,14 @@
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 	
+	<!-- 글 삭제 : 삭제 Y, 미삭제 N -->
 	<update id="questionDelete" parameterType="int">
 		UPDATE SHOPPING_QUESTION_BOARD
 		SET QUESTION_DELETE_CHECK = 'Y'
 		WHERE QUESTION_NUMBER = #{questionNumber}
 	</update>
 	
+	<!-- 전체 글 수 가져오기 : if문 -->
 	<select id="qeustionTotalCount" resultType="int" parameterType="PagingVo">
 		SELECT COUNT(*)
 		FROM SHOPPING_QUESTION_BOARD
@@ -68,6 +73,7 @@
 		</if>
 	</select>
 	
+	<!-- 전체 글 리스트 가져오기 : if문 -->
 	<select id="questionListPaging" parameterType="PagingVo" resultType="ShoppingQuestionVo">
 		
 		SELECT TO_NUMBER(#{startQuestionNumber} -1 + rownum) AS rowNumber
@@ -109,6 +115,7 @@
 		WHERE RN BETWEEN #{startQuestionNumber} and #{endQuestionNumber}
 	</select>
 	
+	<!-- json형식으로 리스트 가져오기 -->
 	<select id="questionListJson" resultType="ShoppingQuestionVo">
 		SELECT QUESTION_NUMBER
 			, QUESTION_USER

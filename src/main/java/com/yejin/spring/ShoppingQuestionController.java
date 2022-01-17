@@ -219,7 +219,7 @@ public class ShoppingQuestionController {
 	 * JSON으로 목록 보여주는 페이지
 	 * @return
 	 */
-	@RequestMapping(value = "/shopping/go", method = RequestMethod.GET)
+	@RequestMapping(value = "/shopping/questionListJsonView", method = RequestMethod.GET)
 	public String go() {
 		return "shoppingQeustionListJson";
 	}

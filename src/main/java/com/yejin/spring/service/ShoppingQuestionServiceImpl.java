@@ -131,9 +131,8 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		model.addAttribute("pageTotalQuestionNumber", pageTotalQuestionNumber);
 		
 		// 클릭한 페이지 번호
-		// 페이지 번호가 0일때 : 검색해서 들어온 경우
+		// 0일때는 로그인 후 리스트로 들어왔을 때
 		if(pagingVo.getPageNumber() != 0) {
-			LOG.info("/////~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			int endQuestionNumber = pagingVo.getPageNumber() * pageTotalQuestionNumber;
 			int startQuestionNumber = endQuestionNumber - (pageTotalQuestionNumber - 1);
 			
@@ -149,8 +148,6 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		int qeustionTotalCount = 0;
 		String resultCode = "";
 		
-		try {
-			LOG.info("!!!!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		if(pagingVo.getSearchKeyword() == null) {
 				model.addAttribute("searchPage", 0);
 				model.addAttribute("dateSearchPage", 0);
@@ -171,15 +168,19 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 			model.addAttribute("startDate", pagingVo.getStartDate());
 			model.addAttribute("endDate", pagingVo.getEndDate());
 		}
-			LOG.info("[QUESTION] questionListStartPage : " + resultCode);
-		} catch (Exception e) {
-			LOG.error("[ERROR] questionListStartPage : " + resultCode);	
-		}
 		
-		// 게시글 리스트 가져오기
-		questionListPaging = shppingQuestionDao.questionListPaging(pagingVo);
-		// 전체 게시글 수를 가져오는 Dao
-		qeustionTotalCount = shppingQuestionDao.qeustionTotalCount(pagingVo);
+		try {
+			// 게시글 리스트 가져오기
+			questionListPaging = shppingQuestionDao.questionListPaging(pagingVo);
+			// 전체 게시글 수를 가져오는 Dao
+			qeustionTotalCount = shppingQuestionDao.qeustionTotalCount(pagingVo);
+			
+			resultCode = ResultEnum.GET_PAGE_SUCCESS.getValue();
+			LOG.info("[QUESTION] questionListPaging : " + resultCode);
+		} catch (Exception e) {
+			resultCode = ResultEnum.GET_PAGE_FAIL.getValue();
+			LOG.error("[QUESTION] questionListPaging : " + resultCode);
+		}
 		
 		// pageNumber = 전체 게시글을 5로 나누면 나오는 나머지
 		int pageNumber = qeustionTotalCount % pageTotalQuestionNumber;

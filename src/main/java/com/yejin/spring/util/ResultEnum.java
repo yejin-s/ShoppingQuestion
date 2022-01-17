@@ -16,7 +16,9 @@ public enum ResultEnum {
 	, UPDATE_SUCCESS("0003")
 	, UPDATE_FAIL("9993")
 	, JOIN_SUCCESS("0004")
-	, JOIN_FAIL("9994");
+	, JOIN_FAIL("9994")
+	, GET_PAGE_SUCCESS("0005")
+	, GET_PAGE_FAIL("9995");
 
 	private final String value;
 

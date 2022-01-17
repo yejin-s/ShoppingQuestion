@@ -11,7 +11,7 @@
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
 <body
-	onload="javascript:goWriteResultCodeAlert('${resultCode}')">
+	onload="javascript:goResultCodeAlert('${resultCode}')">
 
 	<select name="pageTotalQuestionNumber" id="pageTotalQuestionNumber"
 		onchange="javascript:goPage(1, '${pageTotalQuestionNumber}', 'select')">

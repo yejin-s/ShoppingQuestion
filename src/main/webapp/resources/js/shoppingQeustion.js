@@ -34,7 +34,8 @@ function goShoppingQuestionDelete(questionNumber){
 	
 }
 
-function goWriteResultCodeAlert(resultCode){
+// 리스트 페이지 로드될 때
+function goResultCodeAlert(resultCode){
 	
 	if(resultCode == "0001"){
 		alert("작성 성공");
@@ -48,19 +49,17 @@ function goWriteResultCodeAlert(resultCode){
 	}else if(resultCode == "9992"){
 		alert("삭제 실패");
 		
-	}
-	
-}
-
-function goUpdateeResultCodeAlert(resultCode){
-	
-	if(resultCode == "0003"){
+	}else if(resultCode == "0003"){
 		alert("수정 성공");
+		
 	}else if(resultCode == "9993"){
 		alert("수정 실패");
+		
 	}
+	
 }
 
+// 페이지 이동
 function goPage(pageNumber, pageTotalQuestionNumber, pageType){
 	
 	// 페이지 이동 버튼눌렀는지, selectbox 버튼 눌렀는지 타입 체크
@@ -88,7 +87,7 @@ function goPage(pageNumber, pageTotalQuestionNumber, pageType){
 	document.shoppingQuestionForm.submit();
 }
 
-
+// json 데이터로 값 받아오기
 function goJsonData(){
 	
 	$.ajax({
@@ -98,18 +97,23 @@ function goJsonData(){
 		success : function(data){
 			
 			var html;
-			
-			for(var i in data){
-				
+			if(data != ""){
+				for(var i in data){
+					html = html + "<tr>";
+					html = html + "<td>" + data[i].questionNumber + "</td>";
+					html = html + "<td>" + data[i].questionUser + "</td>";
+					html = html + "<td>" + data[i].questionTitle + "</td>";
+					html = html + "<td>" + data[i].questionContent + "</td>";
+					html = html + "<td>" + changeDate(data[i].questionRegdate) + "</td>";
+					html = html + "<td>" + changeDate(data[i].questionModityRegdate) + "</td>";
+					html = html + "</tr>";
+				}
+			}else{
 				html = html + "<tr>";
-				html = html + "<td>" + data[i].questionNumber + "</td>";
-				html = html + "<td>" + data[i].questionUser + "</td>";
-				html = html + "<td>" + data[i].questionTitle + "</td>";
-				html = html + "<td>" + data[i].questionContent + "</td>";
-				html = html + "<td>" + changeDate(data[i].questionRegdate) + "</td>";
-				html = html + "<td>" + changeDate(data[i].questionModityRegdate) + "</td>";
+				html = html + "<td colspan='6'> 조회 된 데이터가 없습니다. </td>";
 				html = html + "</tr>";
 			}
+			
 			$('#jsonTable').append(html);
 		},
 		error : function(){
@@ -118,6 +122,7 @@ function goJsonData(){
 	});
 }
 
+// 날짜 포멧
 function changeDate(date){
 	
 	const today = new Date(date);
