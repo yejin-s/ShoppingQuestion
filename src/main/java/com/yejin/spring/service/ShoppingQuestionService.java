@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.ui.Model;
 
+import com.yejin.spring.vo.CommonCodeVo;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 

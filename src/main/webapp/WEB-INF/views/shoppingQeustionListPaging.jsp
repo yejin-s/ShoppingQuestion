@@ -11,19 +11,20 @@
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
 <body onload="javascript:goShoppingQuestionResultCode(${resultCode})">
+	<!-- enum 공통코드 : 공통적으로 쓰지만 거의 바뀔 일이 없다. -->
 	<select name="pageTotalQuestionNumber" id="pageTotalQuestionNumber"
 		onchange="javascript:goPage(1, '${pageTotalQuestionNumber}', 'select')">
 		<option value="페이지">페이지</option>
-		<option value="5">5</option>
-		<option value="10">10</option>
-		<option value="15">15</option>
-		<option value="20">20</option>
+		<c:forEach var="totalPageNumber" items="${totalPageNumber }">
+			<option value="<c:out value="${totalPageNumber.code}" />"><c:out value="${totalPageNumber.codeName}" /></option>
+		</c:forEach>
 	</select>
-
+	
+	<!-- DB 공통코드 : 공통적이고, 자주바뀌는 코드 -->
 	<select name="searchType" id="searchType">
-		<option value="QUESTION_USER">작성자</option>
-		<option value="QUESTION_TITLE">제목</option>
-		<option value="QUESTION_CONTENT">내용</option>
+		<c:forEach var="commonCodeList" items="${commonCodeList }">
+			<option value="${commonCodeList.code }">${commonCodeList.codeName }</option>
+		</c:forEach>
 	</select>
 
 	<c:choose>

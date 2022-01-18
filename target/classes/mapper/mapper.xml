@@ -128,4 +128,12 @@
 		WHERE QUESTION_DELETE_CHECK = 'N'
 		ORDER BY QUESTION_NUMBER ASC
 	</select>
+	
+	<select id="commonCodeList" resultType="CommonCodeVo" parameterType="CommonCodeVo">
+		SELECT code, code_name 
+		FROM common_code
+		WHERE parents_code = #{parentsCode}
+		AND code_use_yn = 'Y'
+		ORDER BY code_order ASC
+	</select>
 </mapper>

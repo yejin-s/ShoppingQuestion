@@ -2,6 +2,7 @@ package com.yejin.spring.dao;
 
 import java.util.List;
 
+import com.yejin.spring.vo.CommonCodeVo;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -54,4 +55,7 @@ public interface ShoppingQuestionDao {
 	 * Json 값 가져오기
 	 */
 	public List<ShoppingQuestionVo> questionListJson();
+	
+	public List<CommonCodeVo> commonCodeList(CommonCodeVo commonCodeVo);
+	
 }

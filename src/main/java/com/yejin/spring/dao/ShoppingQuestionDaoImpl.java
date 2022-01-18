@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yejin.spring.vo.CommonCodeVo;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -91,6 +92,12 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	public List<ShoppingQuestionVo> questionListJson() {
 		List<ShoppingQuestionVo> questionListJson = sqlSession.selectList("questionListJson");
 		return questionListJson;
+	}
+
+	@Override
+	public List<CommonCodeVo> commonCodeList(CommonCodeVo commonCodeVo) {
+		List<CommonCodeVo> commonCodeList = sqlSession.selectList("commonCodeList", commonCodeVo);
+		return commonCodeList;
 	}
 
 }

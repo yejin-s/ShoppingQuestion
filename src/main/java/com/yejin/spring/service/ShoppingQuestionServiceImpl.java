@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.yejin.spring.ShoppingQuestionController;
 import com.yejin.spring.dao.ShoppingQuestionDao;
 import com.yejin.spring.util.ResultEnum;
+import com.yejin.spring.vo.CommonCodeVo;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
 
@@ -186,6 +187,14 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("nowPageNumber", nowPageNumber);
+		
+		// DB공통코드 조회
+		CommonCodeVo commonCodeVo = new CommonCodeVo();
+		commonCodeVo.setParentsCode("SEARCHTYPE");
+		
+		List<CommonCodeVo> commonCodeList = shppingQuestionDao.commonCodeList(commonCodeVo);
+		model.addAttribute("commonCodeList", commonCodeList);
+		
 		return questionListPaging;
 	}
 	

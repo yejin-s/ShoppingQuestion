@@ -15,5 +15,6 @@
 		<typeAlias alias="ShoppingQuestionVo" type="com.yejin.spring.vo.ShoppingQuestionVo"/>
 		<typeAlias alias="PagingVo" type="com.yejin.spring.vo.PagingVo"/>
 		<typeAlias alias="ShoppingUserVo" type="com.yejin.spring.vo.ShoppingUserVo"/>
+		<typeAlias alias="CommonCodeVo" type="com.yejin.spring.vo.CommonCodeVo"/>
 	</typeAliases>
   </configuration>

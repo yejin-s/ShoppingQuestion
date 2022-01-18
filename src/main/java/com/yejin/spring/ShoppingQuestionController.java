@@ -1,5 +1,6 @@
 package com.yejin.spring;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yejin.spring.service.ShoppingQuestionService;
+import com.yejin.spring.util.TotalPageNumberEnum;
 import com.yejin.spring.vo.PagingVo;
 import com.yejin.spring.vo.ShoppingQuestionVo;
+import com.yejin.spring.vo.CommonCodeVo;
 
 /**
  * @author 설예진 쇼핑몰 문의게시판 목록, 등록, 상세정보 보기, 수정, 삭제 컨트롤러
@@ -190,6 +193,17 @@ public class ShoppingQuestionController {
 
 		model.addAttribute("resultCode", resultCode);
 		model.addAttribute("questionListPaging", questionListPaging);
+		
+		
+		List<CommonCodeVo> totalPageNumber = new ArrayList<CommonCodeVo>();
+		
+		for(TotalPageNumberEnum vo : TotalPageNumberEnum.values()) {
+			CommonCodeVo commonCodeVo = new CommonCodeVo();
+			commonCodeVo.setCode(vo.getCode());
+			commonCodeVo.setCodeName(vo.getName());
+			totalPageNumber.add(commonCodeVo);
+		}
+		model.addAttribute("totalPageNumber", totalPageNumber);
 		
 		resultCode = "";
 		return "shoppingQeustionListPaging";
