@@ -153,15 +153,6 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 				model.addAttribute("dateSearchPage", 0);
 				
 		}else {
-			
-			if(pagingVo.getSearchSelect().equals("작성자")) {
-				pagingVo.setSearchSelect("QUESTION_USER");
-			}else if(pagingVo.getSearchSelect().equals("제목")) {
-				pagingVo.setSearchSelect("QUESTION_TITLE");
-			}else if(pagingVo.getSearchSelect().equals("내용")) {
-				pagingVo.setSearchSelect("QUESTION_CONTENT");
-			}
-			
 			model.addAttribute("searchPage", 1);
 			model.addAttribute("dateSearchPage", 1);
 			model.addAttribute("searchKeyword", pagingVo.getSearchKeyword());

@@ -12,10 +12,11 @@ public class PagingVo {
 	private int pageNumber = 0;
 	
 	// 한 페이지 당 보여줄 게시물 수
+	// 로그인 후 한 페이지 당 5개의 게시물을 보여주기 이해 기본값 주기
 	private int pageTotalQuestionNumber = 5;
 	
 	// 검색기능 박스 : 작성자, 제목, 내용 
-	private String searchSelect;
+	private String searchType;
 	
 	// 검색기능 검색어
 	private String searchKeyword;
@@ -58,12 +59,12 @@ public class PagingVo {
 		this.pageTotalQuestionNumber = pageTotalQuestionNumber;
 	}
 
-	public String getSearchSelect() {
-		return searchSelect;
+	public String getSearchType() {
+		return searchType;
 	}
 
-	public void setSearchSelect(String searchSelect) {
-		this.searchSelect = searchSelect;
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
 	}
 
 	public String getSearchKeyword() {

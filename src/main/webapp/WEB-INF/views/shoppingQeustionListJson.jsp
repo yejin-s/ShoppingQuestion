@@ -11,8 +11,7 @@
 <head>
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
-<body
-	onload="javascript:goJsonData()">
+<body>
 
 	<table border="1px" id="jsonTable">
 		<tr>

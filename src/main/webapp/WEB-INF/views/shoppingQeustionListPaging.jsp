@@ -22,10 +22,10 @@
 		<option value="20">20</option>
 	</select>
 
-	<select name="searchSelect" id="searchSelect">
-		<option value="작성자">작성자</option>
-		<option value="제목">제목</option>
-		<option value="내용">내용</option>
+	<select name="searchType" id="searchType">
+		<option value="QUESTION_USER">작성자</option>
+		<option value="QUESTION_TITLE">제목</option>
+		<option value="QUESTION_CONTENT">내용</option>
 	</select>
 
 	<c:choose>
@@ -181,7 +181,7 @@
 		<input type="hidden" id="questionNumber" name="questionNumber" /> 
 		<input type="hidden" id="pageNumber" name="pageNumber" /> 
 		<input type="hidden" id="pageTotalQuestionNumber" name="pageTotalQuestionNumber" />
-		<input type="hidden" id="searchSelect" name="searchSelect" />
+		<input type="hidden" id="searchType" name="searchType" />
 		<input type="hidden" id="searchKeyword" name="searchKeyword" />
 		<input type="hidden" id="startDate" name="startDate" />
 		<input type="hidden" id="endDate" name="endDate" />

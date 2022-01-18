@@ -1,42 +1,5 @@
-  // 글쓰기 페이지로 가는 함수
-function goShoppingQuestionWrite(){
-	document.shoppingQuestionForm.action = "/spring/shopping/questionWrite";
-	document.shoppingQuestionForm.submit();
-}
-
-// 글 상세정보 페이지로 가는 함수
-function goShoppingQuestionDetail(questionNumber){
-	
-	document.shoppingQuestionForm.questionNumber.value = questionNumber;
-	document.shoppingQuestionForm.action = "/spring/shopping/questionDetail";
-	document.shoppingQuestionForm.submit();
-}
-
-// 검색 사용 후 초기화하고 리스트로 돌아오는 코드
-function goShoppingQuestionListPaging(pageNumber, pageTotalQuestionNumber){
-	
-	$("#pageTotalQuestionNumber").val(pageTotalQuestionNumber).remove();
-	$("#searchSelect").val(searchSelect).remove();
-	$("#startDate").val(startDate).remove();
-	$("#endDate").val(endDate).remove();
-	document.shoppingQuestionForm.pageNumber.value = pageNumber;
-	document.shoppingQuestionForm.pageTotalQuestionNumber.value = pageTotalQuestionNumber;
-	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
-	document.shoppingQuestionForm.submit();
-}
-
-// 글 삭제 컨트롤러로 가는 함수
-function goShoppingQuestionDelete(questionNumber){
-	
-	document.shoppingQuestionForm.questionNumber.value = questionNumber;
-	document.shoppingQuestionForm.action = "/spring/shopping/questionDelete";
-	document.shoppingQuestionForm.submit();
-	
-}
-
-// 리스트 페이지 로드될 때
-function goResultCodeAlert(resultCode){
-	
+// 페이지 로드될 때
+$(document).ready(function(){
 	if(resultCode == "0001"){
 		alert("작성 성공");
 		
@@ -56,6 +19,41 @@ function goResultCodeAlert(resultCode){
 		alert("수정 실패");
 		
 	}
+})
+
+// 글쓰기 페이지로 가는 함수
+function goShoppingQuestionWrite(){
+	document.shoppingQuestionForm.action = "/spring/shopping/questionWrite";
+	document.shoppingQuestionForm.submit();
+}
+
+// 글 상세정보 페이지로 가는 함수
+function goShoppingQuestionDetail(questionNumber){
+	
+	document.shoppingQuestionForm.questionNumber.value = questionNumber;
+	document.shoppingQuestionForm.action = "/spring/shopping/questionDetail";
+	document.shoppingQuestionForm.submit();
+}
+
+// 검색 사용 후 초기화하고 리스트로 돌아오는 코드
+function goShoppingQuestionListPaging(pageNumber, pageTotalQuestionNumber){
+	
+	$("#pageTotalQuestionNumber").val(pageTotalQuestionNumber).remove();
+	$("#searchType").val(searchType).remove();
+	$("#startDate").val(startDate).remove();
+	$("#endDate").val(endDate).remove();
+	document.shoppingQuestionForm.pageNumber.value = pageNumber;
+	document.shoppingQuestionForm.pageTotalQuestionNumber.value = pageTotalQuestionNumber;
+	document.shoppingQuestionForm.action = "/spring/shopping/questionListPaging";
+	document.shoppingQuestionForm.submit();
+}
+
+// 글 삭제 컨트롤러로 가는 함수
+function goShoppingQuestionDelete(questionNumber){
+	
+	document.shoppingQuestionForm.questionNumber.value = questionNumber;
+	document.shoppingQuestionForm.action = "/spring/shopping/questionDelete";
+	document.shoppingQuestionForm.submit();
 	
 }
 
@@ -68,7 +66,7 @@ function goPage(pageNumber, pageTotalQuestionNumber, pageType){
 	}
 	
 	// 검색기능
-	var searchSelect = $("#searchSelect").val();
+	var searchType = $("#searchType").val();
 	var searchKeyword = $("#searchKeyword").val();
 	
 	// 날짜
@@ -76,10 +74,10 @@ function goPage(pageNumber, pageTotalQuestionNumber, pageType){
 	var endDate = $("#endDate").val();
 	
 	$("#pageTotalQuestionNumber").val(pageTotalQuestionNumber).prop("selected", true);
-	$("#searchSelect").val(searchSelect).prop("selected", true);
+	$("#searchType").val(searchType).prop("selected", true);
 	document.shoppingQuestionForm.pageNumber.value = pageNumber;
 	document.shoppingQuestionForm.pageTotalQuestionNumber.value = pageTotalQuestionNumber;
-	document.shoppingQuestionForm.searchSelect.value = searchSelect;
+	document.shoppingQuestionForm.searchType.value = searchType;
 	document.shoppingQuestionForm.searchKeyword.value = searchKeyword;
 	document.shoppingQuestionForm.startDate.value = startDate;
 	document.shoppingQuestionForm.endDate.value = endDate;
