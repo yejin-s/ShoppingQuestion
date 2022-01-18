@@ -220,7 +220,8 @@ public class ShoppingQuestionController {
 	 * @return
 	 */
 	@RequestMapping(value = "/shopping/questionListJsonView", method = RequestMethod.GET)
-	public String go() {
+	public String questionListJsonView() {
+		
 		return "shoppingQeustionListJson";
 	}
 

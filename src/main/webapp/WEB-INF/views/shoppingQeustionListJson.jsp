@@ -5,14 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
 <html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="/spring/resources/js/shoppingQeustion.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <head>
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
-<body>
-
+<body onload="javascript:goJsonData()">
 	<table border="1px" id="jsonTable">
 		<tr>
 			<td>번호</td>

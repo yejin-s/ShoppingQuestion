@@ -1,5 +1,5 @@
 // 페이지 로드될 때
-$(document).ready(function(){
+function goShoppingQuestionResultCode(resultCode){
 	if(resultCode == "0001"){
 		alert("작성 성공");
 		
@@ -19,7 +19,7 @@ $(document).ready(function(){
 		alert("수정 실패");
 		
 	}
-})
+}
 
 // 글쓰기 페이지로 가는 함수
 function goShoppingQuestionWrite(){

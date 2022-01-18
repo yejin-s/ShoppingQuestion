@@ -3,12 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/spring/resources/js/shoppingQeustion.js"></script>
 <head>
 <meta charset="EUC-KR">
 <title>SHOPPING QUESTION DETAIL PAGE</title>
 </head>
-<body>
+<body onload="javascript:goShoppingQuestionResultCode(${resultCode})">
 	<form action = "/spring/shopping/questionUpdatePage" method="post">
 		<input type="hidden" id="questionNumber" name="questionNumber" value="${shoppingQuestionDetail.questionNumber }">
 		<table border="1px">

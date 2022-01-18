@@ -4,15 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page session="false"%>
 <html>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="/spring/resources/js/shoppingQeustion.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <head>
 <title>SHOPPING QEUSTION LIST PAGING</title>
 </head>
-<body
-	onload="javascript:goResultCodeAlert('${resultCode}')">
-
+<body onload="javascript:goShoppingQuestionResultCode(${resultCode})">
 	<select name="pageTotalQuestionNumber" id="pageTotalQuestionNumber"
 		onchange="javascript:goPage(1, '${pageTotalQuestionNumber}', 'select')">
 		<option value="페이지">페이지</option>
