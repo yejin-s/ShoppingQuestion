@@ -54,7 +54,7 @@ public interface ShoppingQuestionDao {
 	/**
 	 * Json 값 가져오기
 	 */
-	public List<ShoppingQuestionVo> questionListJson();
+	public List<ShoppingQuestionVo> questionList();
 	
 	public List<CommonCodeVo> commonCodeList(CommonCodeVo commonCodeVo);
 	

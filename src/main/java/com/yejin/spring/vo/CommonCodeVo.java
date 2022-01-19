@@ -2,17 +2,17 @@ package com.yejin.spring.vo;
 
 public class CommonCodeVo {
 
-	private String code;
+	private String codeId;
 	private String codeName;
 	
-	private String parentsCode;
+	private String codeType;
 
-	public String getCode() {
-		return code;
+	public String getCodeId() {
+		return codeId;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCodeId(String codeId) {
+		this.codeId = codeId;
 	}
 
 	public String getCodeName() {
@@ -23,15 +23,13 @@ public class CommonCodeVo {
 		this.codeName = codeName;
 	}
 
-	public String getParentsCode() {
-		return parentsCode;
+	public String getCodeType() {
+		return codeType;
 	}
 
-	public void setParentsCode(String parentsCode) {
-		this.parentsCode = parentsCode;
+	public void setCodeType(String codeType) {
+		this.codeType = codeType;
 	}
 
-
-	
 	
 }

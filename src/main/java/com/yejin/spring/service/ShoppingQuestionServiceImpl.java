@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -150,12 +146,13 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		String resultCode = "";
 		
 		if(pagingVo.getSearchKeyword() == null) {
-				model.addAttribute("searchPage", 0);
-				model.addAttribute("dateSearchPage", 0);
+				model.addAttribute("searchYN", "N");
+				model.addAttribute("dateSearchYN", "N");
 				
 		}else {
-			model.addAttribute("searchPage", 1);
-			model.addAttribute("dateSearchPage", 1);
+			LOG.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ : " + pagingVo.getSearchKeyword());
+			model.addAttribute("searchYN", "Y");
+			model.addAttribute("dateSearchYN", "Y");
 			model.addAttribute("searchKeyword", pagingVo.getSearchKeyword());
 			model.addAttribute("startDate", pagingVo.getStartDate());
 			model.addAttribute("endDate", pagingVo.getEndDate());
@@ -190,7 +187,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		// DB공통코드 조회
 		CommonCodeVo commonCodeVo = new CommonCodeVo();
-		commonCodeVo.setParentsCode("SEARCHTYPE");
+		commonCodeVo.setCodeType ("SEARCHTYPE");
 		
 		List<CommonCodeVo> commonCodeList = shppingQuestionDao.commonCodeList(commonCodeVo);
 		model.addAttribute("commonCodeList", commonCodeList);
@@ -207,7 +204,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		List<ShoppingQuestionVo> questionListJson = null;
 		
 		try {
-			questionListJson = shppingQuestionDao.questionListJson();
+			questionListJson = shppingQuestionDao.questionList();
 			LOG.info("[QUESTION] questionListJson OK : " + questionListJson);
 			
 		} catch (Exception e) {

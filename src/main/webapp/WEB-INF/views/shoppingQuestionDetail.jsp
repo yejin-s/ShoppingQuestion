@@ -26,7 +26,7 @@
 				<td>${shoppingQuestionDetail.rowNumber }</td>
 				<td>${shoppingQuestionDetail.questionTitle }</td>
 				<td>${shoppingQuestionDetail.questionContent }</td>
-				<td>${shoppingQuestionDetail.questionUser }</td>
+				<td>${shoppingQuestionDetail.userId }</td>
 				<td><fmt:formatDate value="${shoppingQuestionDetail.questionRegdate}" pattern="yy/MM/dd"/></td>
 				<c:if test="${shoppingQuestionDetail.questionModityRegdate ne null}">
 					<td><fmt:formatDate value="${shoppingQuestionDetail.questionModityRegdate}" pattern="yy/MM/dd"/></td>

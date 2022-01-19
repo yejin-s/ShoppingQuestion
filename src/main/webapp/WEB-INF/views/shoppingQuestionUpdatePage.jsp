@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>${shoppingQuestionDetail.questionNumber }</td>
-				<td>${shoppingQuestionDetail.questionUser }</td>
+				<td>${shoppingQuestionDetail.userId }</td>
 				<td><input type="text" name="questionTitle" value="${shoppingQuestionDetail.questionTitle }"></td>
 				<td><input type="text" name="questionContent" value="${shoppingQuestionDetail.questionContent }"></td>
 			</tr>

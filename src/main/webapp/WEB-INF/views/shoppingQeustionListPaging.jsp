@@ -16,19 +16,19 @@
 		onchange="javascript:goPage(1, '${pageTotalQuestionNumber}', 'select')">
 		<option value="페이지">페이지</option>
 		<c:forEach var="totalPageNumber" items="${totalPageNumber }">
-			<option value="<c:out value="${totalPageNumber.code}" />"><c:out value="${totalPageNumber.codeName}" /></option>
+			<option value="<c:out value="${totalPageNumber.codeId}" />"><c:out value="${totalPageNumber.codeName}" /></option>
 		</c:forEach>
 	</select>
 	
 	<!-- DB 공통코드 : 공통적이고, 자주바뀌는 코드 -->
 	<select name="searchType" id="searchType">
 		<c:forEach var="commonCodeList" items="${commonCodeList }">
-			<option value="${commonCodeList.code }">${commonCodeList.codeName }</option>
+			<option value="${commonCodeList.codeId }">${commonCodeList.codeName }</option>
 		</c:forEach>
 	</select>
 
 	<c:choose>
-		<c:when test="${searchPage == 1 }">
+		<c:when test="${searchYN == 'Y'}">
 			<input type="text" name="searchKeyword" id="searchKeyword" value="${searchKeyword }">
 			<input type="button" value="검색" id="searchButton" 
 				onclick="javascript:goPage(1, '${pageTotalQuestionNumber}', 'page')">	
@@ -44,7 +44,7 @@
 	<br>
 		
 	<c:choose>
-		<c:when test="${dateSearchPage == 1 }">
+		<c:when test="${dateSearchYN == 'Y' }">
 			<input type="date" id="startDate" name="startDate" value="${startDate }">
 			~
 			<input type="date" id="endDate" name="endDate" value="${endDate }">
@@ -77,7 +77,7 @@
 				<c:forEach items="${questionListPaging}" var="questionListPaging">
 					<tr>
 						<td>${questionListPaging.rowNumber }</td>
-						<td>${questionListPaging.questionUser }</td>
+						<td>${questionListPaging.userId }</td>
 						<td><a
 							href="javascript:goShoppingQuestionDetail('${questionListPaging.questionNumber }')">${questionListPaging.questionTitle }</a></td>
 						<td><fmt:formatDate

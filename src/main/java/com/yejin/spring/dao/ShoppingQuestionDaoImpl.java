@@ -89,8 +89,8 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 	 * Json 값 가져오기
 	 */
 	@Override
-	public List<ShoppingQuestionVo> questionListJson() {
-		List<ShoppingQuestionVo> questionListJson = sqlSession.selectList("questionListJson");
+	public List<ShoppingQuestionVo> questionList() {
+		List<ShoppingQuestionVo> questionListJson = sqlSession.selectList("questionList");
 		return questionListJson;
 	}
 

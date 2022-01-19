@@ -8,12 +8,12 @@
 	<insert id="questionWriteEnrollment" parameterType="ShoppingQuestionVo">
 		INSERT INTO SHOPPING_QUESTION_BOARD(
 			QUESTION_NUMBER
-			, QUESTION_USER
+			, USER_ID
 			, QUESTION_TITLE
 			, QUESTION_CONTENT
 			, QUESTION_REGDATE)
 		VALUES(QUESTION_NUMBER_SEQ.NEXTVAL
-			, #{questionUser}
+			, #{userId}
 			, #{questionTitle}
 			, #{questionContent}
 			, SYSDATE)
@@ -23,7 +23,7 @@
 	<select id="questionDetail" parameterType="int" resultType="ShoppingQuestionVo">
 		SELECT RN as rowNumber
 				, QUESTION_NUMBER 
-			    , QUESTION_USER
+			    , USER_ID
 			    , QUESTION_TITLE
 			    , QUESTION_CONTENT
 			    , QUESTION_REGDATE
@@ -32,7 +32,7 @@
 		FROM (
 			SELECT ROWNUM RN
 		    	, QUESTION_NUMBER 
-		        , QUESTION_USER
+		        , USER_ID
 		        , QUESTION_TITLE
 		        , QUESTION_CONTENT
 		        , QUESTION_REGDATE
@@ -78,7 +78,7 @@
 		
 		SELECT TO_NUMBER(#{startQuestionNumber} -1 + rownum) AS rowNumber
 				, QUESTION_NUMBER 
-				, QUESTION_USER
+				, USER_ID
         		, QUESTION_TITLE
         		, QUESTION_CONTENT
         		, QUESTION_REGDATE
@@ -87,7 +87,7 @@
 		FROM(
 			SELECT ROWNUM RN 
 		           	, QUESTION_NUMBER 
-				  	, QUESTION_USER
+				  	, USER_ID
 				  	, QUESTION_TITLE
 				  	, QUESTION_CONTENT
 				   	, QUESTION_REGDATE
@@ -95,7 +95,7 @@
 				    , QUESTION_DELETE_CHECK
 		            FROM (
 		                SELECT QUESTION_NUMBER 
-				       		, QUESTION_USER
+				       		, USER_ID
 				        	, QUESTION_TITLE
 				        	, QUESTION_CONTENT
 				        	, QUESTION_REGDATE
@@ -116,9 +116,9 @@
 	</select>
 	
 	<!-- json형식으로 리스트 가져오기 -->
-	<select id="questionListJson" resultType="ShoppingQuestionVo">
+	<select id="questionList" resultType="ShoppingQuestionVo">
 		SELECT QUESTION_NUMBER
-			, QUESTION_USER
+			, USER_ID
 			, QUESTION_TITLE
 			, QUESTION_CONTENT
 			, QUESTION_REGDATE
@@ -130,10 +130,10 @@
 	</select>
 	
 	<select id="commonCodeList" resultType="CommonCodeVo" parameterType="CommonCodeVo">
-		SELECT code, code_name 
-		FROM common_code
-		WHERE parents_code = #{parentsCode}
-		AND code_use_yn = 'Y'
-		ORDER BY code_order ASC
+		SELECT CODE_ID, CODE_NAME 
+		FROM COMMON_CODE
+		WHERE CODE_TYPE = #{codeType}
+		AND CODE_USE_YN = 'Y'
+		ORDER BY CODE_ORDER ASC
 	</select>
 </mapper>

@@ -59,7 +59,7 @@ public class ShoppingQuestionController {
 	@RequestMapping(value = "/shopping/questionWriteEnrollment", method = RequestMethod.POST)
 	public String questionWriteEnrollment(ShoppingQuestionVo shoppingQuestionVo, Model model) {
 
-		LOG.info("[QUESTION] questionWriteEnrollment user: " + shoppingQuestionVo.getQuestionUser() + ", title: "
+		LOG.info("[QUESTION] questionWriteEnrollment user: " + shoppingQuestionVo.getUserId() + ", title: "
 				+ shoppingQuestionVo.getQuestionTitle() + ", content:" + shoppingQuestionVo.getQuestionContent());
 
 		resultCode = shoppingQuestionService.questionWriteEnrollment(shoppingQuestionVo);
@@ -84,7 +84,7 @@ public class ShoppingQuestionController {
 		ShoppingQuestionVo shoppingQuestionDetail = shoppingQuestionService.questionDetail(shoppingQuestionVo);
 		model.addAttribute("shoppingQuestionDetail", shoppingQuestionDetail);
 
-		LOG.info("[QUESTION] questionDetail user: " + shoppingQuestionDetail.getQuestionUser() + ", title: "
+		LOG.info("[QUESTION] questionDetail user: " + shoppingQuestionDetail.getUserId() + ", title: "
 				+ shoppingQuestionDetail.getQuestionTitle() + ", content:" + shoppingQuestionDetail.getQuestionContent()
 				+ ", questionNumber: " + shoppingQuestionDetail.getQuestionNumber() + ", modifydate: "
 				+ shoppingQuestionDetail.getQuestionModityRegdate() + ", regdate: "
@@ -110,7 +110,7 @@ public class ShoppingQuestionController {
 		ShoppingQuestionVo shoppingQuestionDetail = shoppingQuestionService.questionDetail(shoppingQuestionVo);
 		model.addAttribute("shoppingQuestionDetail", shoppingQuestionDetail);
 
-		LOG.info("[QUESTION] questionUpdatePage user: " + shoppingQuestionDetail.getQuestionUser() + ", title: "
+		LOG.info("[QUESTION] questionUpdatePage user: " + shoppingQuestionDetail.getUserId() + ", title: "
 				+ shoppingQuestionDetail.getQuestionTitle() + ", content:" + shoppingQuestionDetail.getQuestionContent()
 				+ ", questionNumber: " + shoppingQuestionDetail.getQuestionNumber() + ", modifydate: "
 				+ shoppingQuestionDetail.getQuestionModityRegdate() + ", regdate: "
@@ -131,7 +131,7 @@ public class ShoppingQuestionController {
 	@RequestMapping(value = "/shopping/questionUpdate", method = RequestMethod.POST)
 	public String questionUpdate(ShoppingQuestionVo shoppingQuestionVo, Model model) {
 
-		LOG.info("[QUESTION] questionUpdate user: " + shoppingQuestionVo.getQuestionUser() + ", title: "
+		LOG.info("[QUESTION] questionUpdate user: " + shoppingQuestionVo.getUserId() + ", title: "
 				+ shoppingQuestionVo.getQuestionTitle() + ", content:" + shoppingQuestionVo.getQuestionContent());
 
 		// 수정한 글로 업데이트 해준 후
@@ -141,7 +141,7 @@ public class ShoppingQuestionController {
 		ShoppingQuestionVo shoppingQuestionDetail = shoppingQuestionService.questionDetail(shoppingQuestionVo);
 		model.addAttribute("shoppingQuestionDetail", shoppingQuestionDetail);
 
-		LOG.info("[QUESTION] questionUpdatePage user: " + shoppingQuestionDetail.getQuestionUser() + ", title: "
+		LOG.info("[QUESTION] questionUpdatePage user: " + shoppingQuestionDetail.getUserId() + ", title: "
 				+ shoppingQuestionDetail.getQuestionTitle() + ", content:" + shoppingQuestionDetail.getQuestionContent()
 				+ ", questionNumber: " + shoppingQuestionDetail.getQuestionNumber() + ", modifydate: "
 				+ shoppingQuestionDetail.getQuestionModityRegdate() + ", regdate: "
@@ -199,7 +199,7 @@ public class ShoppingQuestionController {
 		
 		for(TotalPageNumberEnum vo : TotalPageNumberEnum.values()) {
 			CommonCodeVo commonCodeVo = new CommonCodeVo();
-			commonCodeVo.setCode(vo.getCode());
+			commonCodeVo.setCodeId(vo.getCode());
 			commonCodeVo.setCodeName(vo.getName());
 			totalPageNumber.add(commonCodeVo);
 		}

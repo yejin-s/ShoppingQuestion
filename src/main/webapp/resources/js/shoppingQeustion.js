@@ -99,7 +99,7 @@ function goJsonData(){
 				for(var i in data){
 					html = html + "<tr>";
 					html = html + "<td>" + data[i].questionNumber + "</td>";
-					html = html + "<td>" + data[i].questionUser + "</td>";
+					html = html + "<td>" + data[i].userId + "</td>";
 					html = html + "<td>" + data[i].questionTitle + "</td>";
 					html = html + "<td>" + data[i].questionContent + "</td>";
 					html = html + "<td>" + changeDate(data[i].questionRegdate) + "</td>";

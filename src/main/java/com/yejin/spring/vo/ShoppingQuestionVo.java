@@ -16,7 +16,7 @@ public class ShoppingQuestionVo {
 	/**
 	 * 작성자
 	 */
-	private String questionUser;
+	private String userId;
 	
 	/**
 	 * 제목
@@ -58,11 +58,12 @@ public class ShoppingQuestionVo {
 	public void setQuestionNumber(int questionNumber) {
 		this.questionNumber = questionNumber;
 	}
-	public String getQuestionUser() {
-		return questionUser;
+	
+	public String getUserId() {
+		return userId;
 	}
-	public void setQuestionUser(String questionUser) {
-		this.questionUser = questionUser;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getQuestionTitle() {
 		return questionTitle;
