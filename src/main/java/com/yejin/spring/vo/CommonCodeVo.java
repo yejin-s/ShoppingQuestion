@@ -3,9 +3,10 @@ package com.yejin.spring.vo;
 public class CommonCodeVo {
 
 	private String codeId;
+	
 	private String codeName;
 	
-	private String codeType;
+	private String codeKind;
 
 	public String getCodeId() {
 		return codeId;
@@ -23,13 +24,14 @@ public class CommonCodeVo {
 		this.codeName = codeName;
 	}
 
-	public String getCodeType() {
-		return codeType;
+	public String getCodeKind() {
+		return codeKind;
 	}
 
-	public void setCodeType(String codeType) {
-		this.codeType = codeType;
+	public void setCodeKind(String codeKind) {
+		this.codeKind = codeKind;
 	}
 
+	
 	
 }

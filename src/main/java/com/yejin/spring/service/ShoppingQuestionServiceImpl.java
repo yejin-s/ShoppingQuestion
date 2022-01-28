@@ -150,7 +150,6 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 				model.addAttribute("dateSearchYN", "N");
 				
 		}else {
-			LOG.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ : " + pagingVo.getSearchKeyword());
 			model.addAttribute("searchYN", "Y");
 			model.addAttribute("dateSearchYN", "Y");
 			model.addAttribute("searchKeyword", pagingVo.getSearchKeyword());
@@ -187,7 +186,7 @@ public class ShoppingQuestionServiceImpl implements ShoppingQuestionService {
 		
 		// DB공통코드 조회
 		CommonCodeVo commonCodeVo = new CommonCodeVo();
-		commonCodeVo.setCodeType ("SEARCHTYPE");
+		commonCodeVo.setCodeKind("SEARCHTYPE");
 		
 		List<CommonCodeVo> commonCodeList = shppingQuestionDao.commonCodeList(commonCodeVo);
 		model.addAttribute("commonCodeList", commonCodeList);

@@ -132,7 +132,7 @@
 	<select id="commonCodeList" resultType="CommonCodeVo" parameterType="CommonCodeVo">
 		SELECT CODE_ID, CODE_NAME 
 		FROM COMMON_CODE
-		WHERE CODE_TYPE = #{codeType}
+		WHERE CODE_KIND = #{codeKind}
 		AND CODE_USE_YN = 'Y'
 		ORDER BY CODE_ORDER ASC
 	</select>

@@ -94,6 +94,9 @@ public class ShoppingQuestionDaoImpl implements ShoppingQuestionDao{
 		return questionListJson;
 	}
 
+	/**
+	 * 공통 코드
+	 */
 	@Override
 	public List<CommonCodeVo> commonCodeList(CommonCodeVo commonCodeVo) {
 		List<CommonCodeVo> commonCodeList = sqlSession.selectList("commonCodeList", commonCodeVo);
